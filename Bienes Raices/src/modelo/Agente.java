@@ -18,5 +18,5 @@ public class Agente extends Usuario{
     
     public void presentarConsultas(){}
     
-    public Venta registrarVentas(){}
+    //public Venta registrarVentas(){}
 }
