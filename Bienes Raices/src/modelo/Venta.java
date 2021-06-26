@@ -5,14 +5,16 @@
  */
 package modelo;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author User
  */
-public class Usuario {
-    private String user;
-    private String password;
-    private String cedula;
-    private String nombre;
+public class Venta {
+    private String nombreCliente;
     private String correo;
+    private LocalDate fecha;
+    
+    public void mostrarVenta(){}
 }

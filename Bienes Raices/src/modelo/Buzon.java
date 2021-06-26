@@ -9,10 +9,8 @@ package modelo;
  *
  * @author User
  */
-public class Usuario {
-    private String user;
-    private String password;
-    private String cedula;
-    private String nombre;
-    private String correo;
+public class Buzon {
+    private Consulta[] consultas;
+    
+    public void mostrarBuzon(){}
 }

@@ -5,14 +5,15 @@
  */
 package modelo;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author User
  */
-public class Usuario {
-    private String user;
-    private String password;
-    private String cedula;
-    private String nombre;
-    private String correo;
+public class Cliente {
+    private LocalDate nacimiento;
+    private Alerta[] alertas;
+    
+    public void mostrarCuotas(String tipo){}
 }

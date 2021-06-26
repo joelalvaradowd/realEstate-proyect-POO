@@ -9,10 +9,9 @@ package modelo;
  *
  * @author User
  */
-public class Usuario {
-    private String user;
-    private String password;
-    private String cedula;
-    private String nombre;
+public class Alerta {
+    private String preferencia;
     private String correo;
+    
+    public void enviarMensaje(String correo){}
 }

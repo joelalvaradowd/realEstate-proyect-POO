@@ -9,10 +9,10 @@ package modelo;
  *
  * @author User
  */
-public class Usuario {
-    private String user;
-    private String password;
-    private String cedula;
-    private String nombre;
-    private String correo;
+public abstract class CalculadoraPrestamo {
+    private double costo;
+    private double tasaInteres;
+    private int cuotas;
+    
+    public void calculadoraPrestamo(){}
 }
