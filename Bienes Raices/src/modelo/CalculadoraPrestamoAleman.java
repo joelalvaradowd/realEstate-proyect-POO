@@ -9,6 +9,10 @@ package modelo;
  *
  * @author User
  */
-public class CalculadoraPrestamoAleman {
-    
+public class CalculadoraPrestamoAleman extends CalculadoraPrestamo{
+
+    @Override
+    public void calculadoraPrestamo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

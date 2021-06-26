@@ -14,5 +14,5 @@ public abstract class CalculadoraPrestamo {
     private double tasaInteres;
     private int cuotas;
     
-    public void calculadoraPrestamo(){}
+    public abstract void calculadoraPrestamo();
 }
