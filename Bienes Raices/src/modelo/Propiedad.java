@@ -10,5 +10,13 @@ package modelo;
  * @author Eliot
  */
 public class Propiedad {
-    
+    private String codigo;
+    private double precio;
+    private double ancho;
+    private double profundidad;
+    private String provincia;
+    private String direccion;
+    private String sector;
+    private String descripcion;
+    private boolean vendida;
 }

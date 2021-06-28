@@ -16,5 +16,6 @@ public class PropiedadesVenta {
     private String tipo;
     private String ciudad;
     private String sector;
-    private ArrayList<Propiedad> propiedades
+    private ArrayList<Propiedad> propiedades;
+    
 }

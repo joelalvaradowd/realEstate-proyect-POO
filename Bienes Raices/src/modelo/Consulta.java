@@ -18,7 +18,7 @@ public class Consulta {
   private String agente;
   private String pregunta;
   private String respuesta;
-  private enum Estado{};
+  private Estado estado;
   private ArrayList<Conversacion> conversaciones;
   
           

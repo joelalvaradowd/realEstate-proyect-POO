@@ -5,10 +5,15 @@
  */
 package modelo;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Eliot
  */
 public class Comentario {
-    
+   private LocalDate fecha; 
+   private String usuario;
+   private String comentario;
+   private String codigoPropiedad;
 }

@@ -10,5 +10,5 @@ package modelo;
  * @author Eliot
  */
 public class Terreno {
-  private enum TipoTerreno{};  
+  private TipoTerreno tipo;  
 }

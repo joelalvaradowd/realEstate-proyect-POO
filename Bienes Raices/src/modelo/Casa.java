@@ -10,5 +10,7 @@ package modelo;
  * @author Eliot
  */
 public class Casa {
+    private int numPisos;
+    private int numHabitaciones;
     
 }
