@@ -9,6 +9,9 @@ package modelo;
  *
  * @author User
  */
-public class CalculadoraPrestamoFrances {
+public class CalculadoraPrestamoFrances extends CalculadoraPrestamo{
     
+    @Override
+    public void calculadoraPrestamo() {
+    }
 }
