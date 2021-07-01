@@ -11,4 +11,7 @@ package modelo;
  */
 public class Administrador {
     private Agente[] agentes;
+    public void registrarPropiedad(Propiedad p){       
+    }
+    public void registrarAgente(){}
 }
