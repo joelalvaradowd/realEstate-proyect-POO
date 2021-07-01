@@ -5,13 +5,19 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author User
  */
-public class Administrador {
-    private Agente[] agentes;
+public class Administrador extends Usuario {
+    private ArrayList<Agente> agentes;
+    private ArrayList<Propiedad> propiedades;
     public void registrarPropiedad(Propiedad p){       
+        propiedades.add(p);
     }
-    public void registrarAgente(){}
+    public void registrarAgente(Agente a){
+        agentes.add(a);
+    }
 }

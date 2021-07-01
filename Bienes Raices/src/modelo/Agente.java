@@ -13,7 +13,6 @@ public class Agente extends Usuario{
     private Venta[] ventas;
     private Propiedad[] propiedades;
     private Buzon buzon;
-    
     public void responderDuda(){}
     
     public void presentarConsultas(){}
