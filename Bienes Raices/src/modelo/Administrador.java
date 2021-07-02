@@ -37,4 +37,4 @@ public class Administrador extends Usuario {
     public void registrarAgente(Agente a) {
         agentes.add(a);
     }
-}
+}                                               
