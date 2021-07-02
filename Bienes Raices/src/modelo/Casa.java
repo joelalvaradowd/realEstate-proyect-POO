@@ -9,7 +9,7 @@ package modelo;
  *
  * @author Eliot
  */
-public class Casa {
+public class Casa extends Propiedad{
     private int numPisos;
     private int numHabitaciones;
     

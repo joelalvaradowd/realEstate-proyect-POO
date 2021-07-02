@@ -53,5 +53,33 @@ public class Administrador extends Usuario {
             System.out.print("Elija una opcion:");
             elec = sc.nextInt();
         } while (elec != 4);
+        switch (elec) {
+            case 1:
+                System.out.println("Ingrese el tipo de propiedad(casao terreno) que desea ingresar:");
+                String propiedad = sc.nextLine();
+                while (propiedad != "casa" || propiedad != "terreno") {
+                    System.out.println("No ha ingresado ninguna de las 2 opciones:");
+                    propiedad = sc.nextLine();    
+                    
+                }
+                if(propiedad=="terreno"){
+                    System.out.print("Ingrese el precio del terreno:");
+                    double precio=sc.nextDouble();
+                    System.out.print("Ingrese el ancho del terreno en metros:");
+                    double ancho=sc.nextDouble();
+                    System.out.print("Ingrese la profundidad del terreno en metros");
+                    double profundidad=sc.nextDouble();
+                    System.out.print("Ingrese la ciudad donde se encuentra el terreno:");
+                    String ciudad=sc.nextLine();
+                    System.out.print("Ingrese la direccion donde se encuentra el terreno:");
+                    String direccion=sc.nextLine();
+                    System.out.print("Ingrese el sector donde se encuentra el terreno");
+                    String sector=sc.nextLine();
+                    System.out.println("Ingrese el tipo de terreno:");
+                    String tipo=sc.nextLine();
+                    Propiedad terreno=new Terreno()
+                    
+                }
+        }
     }
 }

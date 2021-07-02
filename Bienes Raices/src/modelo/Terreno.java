@@ -9,6 +9,6 @@ package modelo;
  *
  * @author Eliot
  */
-public class Terreno {
+public class Terreno extends Propiedad{
   private TipoTerreno tipo;  
 }
