@@ -11,4 +11,10 @@ package modelo;
  */
 public class Terreno extends Propiedad{
   private TipoTerreno tipo;  
+
+    public Terreno(String codigo, double precio, double ancho, double profundidad, String provincia, String direccion, String sector, String descripcion, boolean vendida, TipoTerreno tipo) {
+        super(codigo, precio, ancho, profundidad, provincia, direccion, sector, descripcion, vendida);
+        this.tipo = tipo;
+    }
+
 }

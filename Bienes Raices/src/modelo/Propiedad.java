@@ -102,4 +102,11 @@ public class Propiedad {
     public void setVendida(boolean vendida) {
         this.vendida = vendida;
     }
+
+    @Override
+    public String toString() {
+        return "Propiedad{" + "codigo=" + codigo + ", precio=" + precio + ", ancho=" + ancho + ", profundidad=" + profundidad + ", provincia=" + provincia + ", direccion=" + direccion + ", sector=" + sector + ", descripcion=" + descripcion + ", vendida=" + vendida + '}';
+    }
+    
+
 }

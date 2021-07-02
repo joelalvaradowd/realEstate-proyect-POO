@@ -75,9 +75,11 @@ public abstract class Usuario {
     }
     
     public abstract void mostrarMenu();
-      
+
     @Override
-    public String toString(){
-        return nombre;
+    public String toString() {
+        return "Usuario{" + "user=" + user + ", password=" + password + ", cedula=" + cedula + ", nombre=" + nombre + ", correo=" + correo + '}';
     }
+      
+
 }
