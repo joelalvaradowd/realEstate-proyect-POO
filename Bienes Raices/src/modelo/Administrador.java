@@ -7,6 +7,7 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import vista.Sistema;
 
 /**
  *
@@ -25,7 +26,7 @@ public class Administrador extends Usuario {
 
     }
 
-    private void registrarPropiedad(Propiedad p) {
+    public void registrarPropiedad(Propiedad p) {
         propiedades.add(p);
         if (i < agentes.size()) {
             agentes.get(i).seguirPropiedad(p);
@@ -52,6 +53,24 @@ public class Administrador extends Usuario {
             System.out.println("4.Cerrar sesion");
             System.out.print("Elija una opcion:");
             elec = sc.nextInt();
+            sc.nextLine();
+            switch(elec){
+                case 2:{
+                    System.out.print("Ingrese el nombre del agente: ");
+                    String nombre = sc.nextLine();
+                    System.out.print("Ingrese la cedula: ");
+                    String cedula = sc.nextLine();
+                    System.out.print("Ingrese el correo eletronico: ");
+                    String correo = sc.nextLine();
+                    System.out.print("Ingrese el usuario: ");
+                    String usuario = sc.nextLine();
+                    System.out.print("Ingrese la contraseña: ");
+                    String password = sc.nextLine();
+                    Usuario u = new Agente(usuario, password, cedula, nombre, correo);
+                    agentes.add((Agente)u);
+                    Sistema.agregarUsuario(u);
+                }
+            }
         } while (elec != 4);
     }
 }

@@ -8,7 +8,9 @@ package vista;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
+import modelo.Administrador;
 import modelo.Agente;
 import modelo.Cliente;
 import modelo.Usuario;
@@ -39,16 +41,13 @@ public class Sistema {
                     System.out.print("Ingrese su usuario:");
                     String usuario = sc.nextLine();
                     System.out.print("Ingrese su contraseña:");
-                    String contraseña = sc.nextLine();
-                    boolean existe = false;
-                    for (Usuario u : usuarios) {
-                        if (u.getUser().equals(usuario) && u.getPassword().equals(contraseña)) {
-                            u.mostrarMenu();
-                            existe = true;
-                        }
+                    String password = sc.nextLine();
+                    Usuario u = existeUsuario(usuario, password);
+                    if(u!=null){
+                        u.mostrarMenu();
                     }
-                    if (!existe) {
-                        System.out.println("Usuario o contraseña incorrecto");
+                    else{
+                        System.out.println("Usuario o contraseña incorrecta");
                     }
                     break;
                 }
@@ -91,9 +90,21 @@ public class Sistema {
 
     public static void inicializarAtributos() {
         usuarios = new ArrayList<>();
-        usuarios.add(new Agente("joealalv", "bebePoxi", "0957831282", "Joel", "joelalvarado2000g@hotmail.com"));
+        usuarios.add(new Administrador("joealalv", "bebePoxi", "0957831282", "Joel", "joelalvarado2000g@hotmail.com"));
         usuarios.add(new Agente("eliotsant", "bebeHermoso", "0952869451", "Eliott", "eliotsant@outlook.com"));
         usuarios.add(new Cliente("rmera", "bebeGuapa", "0912345678", "Rocio", "rmera@espol.edu.ec"));
     }
-
+    
+    public static void agregarUsuario(Usuario u){
+        usuarios.add(u);
+    }
+    
+    public static Usuario existeUsuario(String user, String password){
+        for(Usuario u: usuarios){
+            if(u.getUser().equals(user) && u.getPassword().equals(password)){
+                return u;
+            }
+        }
+        return null;
+    }
 }
