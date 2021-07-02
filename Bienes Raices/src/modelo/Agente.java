@@ -5,17 +5,30 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author User
  */
 public class Agente extends Usuario{
-    private Venta[] ventas;
-    private Propiedad[] propiedades;
+    private ArrayList<Venta> ventas;
+    private ArrayList<Propiedad> propiedades;
     private Buzon buzon;
+
+    public Agente(String user, String password, String cedula, String nombre, String correo) {
+        super(user, password, cedula, nombre, correo);
+    }
     public void responderDuda(){}
     
     public void presentarConsultas(){}
     
-    //public Venta registrarVentas(){}
+    public void seguirPropiedad(Propiedad p){
+        propiedades.add(p);
+    }
+
+    @Override
+    public void mostrarMenu() {
+        System.out.println("Menu de agente");
+    }
 }

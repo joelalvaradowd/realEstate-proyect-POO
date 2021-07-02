@@ -37,4 +37,9 @@ public class Administrador extends Usuario {
     public void registrarAgente(Agente a) {
         agentes.add(a);
     }
+
+    @Override
+    public void mostrarMenu() {
+        System.out.println("Menu de administrador");
+    }
 }                                               
