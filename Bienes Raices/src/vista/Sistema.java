@@ -29,7 +29,7 @@ public class Sistema {
             System.out.println("1. Inicio de sesion");
             System.out.println("2. Registrarse");
             System.out.println("3. Salir");
-            System.out.print("Eliga una opcion:");
+            System.out.print("Elija una opcion:");
             elec = sc.nextInt();
             sc.nextLine();
             if (elec == 1) {

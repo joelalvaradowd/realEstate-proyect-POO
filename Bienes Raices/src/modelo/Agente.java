@@ -6,12 +6,14 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
  * @author User
  */
-public class Agente extends Usuario{
+public class Agente extends Usuario {
+
     private ArrayList<Venta> ventas;
     private ArrayList<Propiedad> propiedades;
     private Buzon buzon;
@@ -19,16 +21,31 @@ public class Agente extends Usuario{
     public Agente(String user, String password, String cedula, String nombre, String correo) {
         super(user, password, cedula, nombre, correo);
     }
-    public void responderDuda(){}
-    
-    public void presentarConsultas(){}
-    
-    public void seguirPropiedad(Propiedad p){
+
+    public void responderDuda() {
+    }
+
+    public void presentarConsultas() {
+    }
+
+    public void seguirPropiedad(Propiedad p) {
         propiedades.add(p);
     }
 
     @Override
     public void mostrarMenu() {
-        System.out.println("Menu de agente");
+        Scanner sc = new Scanner(System.in);
+        int elec;
+        do {
+            System.out.println("Menu de agente");
+            System.out.println("1.Registrar buzon");
+            System.out.println("2. Registrar venta");
+            System.out.println("3. Cerrar sesion");
+            System.out.print("Elija una opcion:");
+            elec = sc.nextInt();
+            if (elec == 1) {
+            } else if (elec == 2) {
+            }
+        } while (elec != 3);
     }
 }

@@ -6,6 +6,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -15,21 +16,22 @@ public class Administrador extends Usuario {
 
     private ArrayList<Agente> agentes;
     private ArrayList<Propiedad> propiedades;
-    private static int i=0;
+    private static int i = 0;
+
     public Administrador(String user, String password, String cedula, String nombre, String correo) {
         super(user, password, cedula, nombre, correo);
         agentes = new ArrayList<>();
         propiedades = new ArrayList<>();
-        
+
     }
 
     private void registrarPropiedad(Propiedad p) {
         propiedades.add(p);
-        if(i<agentes.size()){
-        agentes.get(i).seguirPropiedad(p);
-        i++;
+        if (i < agentes.size()) {
+            agentes.get(i).seguirPropiedad(p);
+            i++;
         }
-        if(i>=agentes.size()){
+        if (i >= agentes.size()) {
             i = 0;
         }
     }
@@ -40,6 +42,16 @@ public class Administrador extends Usuario {
 
     @Override
     public void mostrarMenu() {
-        System.out.println("Menu de administrador");
+        Scanner sc = new Scanner(System.in);
+        int elec;
+        do {
+            System.out.println("Menu de administrador");
+            System.out.println("1.Registrar propiedad");
+            System.out.println("2.Registrar agente");
+            System.out.println("3.Reporte contactos y ventas");
+            System.out.println("4.Cerrar sesion");
+            System.out.print("Elija una opcion:");
+            elec = sc.nextInt();
+        } while (elec != 4);
     }
-}                                               
+}
