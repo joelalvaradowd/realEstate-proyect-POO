@@ -75,5 +75,9 @@ public abstract class Usuario {
     }
     
     public abstract void mostrarMenu();
-        
+      
+    @Override
+    public String toString(){
+        return nombre;
+    }
 }
