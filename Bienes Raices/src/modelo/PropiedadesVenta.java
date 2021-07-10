@@ -13,108 +13,49 @@ import java.util.List;
  * @author Eliot
  */
 public class PropiedadesVenta {
-
-    private double precio;
-    private String tipo;
-    private String ciudad;
-    private String sector;
     private static ArrayList<Propiedad> propiedades;
 
-//    public static List<Propiedad> filtrarPropiedades(double precioMax, double precioMin, String tipo, String ciudad, String sector) {
-//        List<Propiedad> propiedadesBuscadas = new ArrayList<>();
-//        for (Propiedad p : propiedades) {
-//
-//            if (p.getPrecio() > precioMax && p.getPrecio() < precioMin && tipo != null && ciudad != null && sector != null) {
-//                if (p.getPrecio() == precio && tipo.equals("terreno") && p instanceof Terreno && p.getCiudad().equals(ciudad) && p.getSector().equals(sector)) {
-//                    propiedadesBuscadas.add(p);
-//                }
-//                if (p.getPrecio() == precio && tipo.equals("vivienda") && p instanceof Casa && p.getCiudad().equals(ciudad) && p.getSector().equals(sector)) {
-//                    propiedadesBuscadas.add(p);
-//                }
-//            }
-//
-//            if (precio > 0 && tipo != null && ciudad != null && sector == null) {
-//                if (p.getPrecio() == precio && tipo.equals("terreno") && p instanceof Terreno && p.getCiudad().equals(ciudad)) {
-//                    propiedadesBuscadas.add(p);
-//                }
-//                if (p.getPrecio() == precio && tipo.equals("vivienda") && p instanceof Casa && p.getCiudad().equals(ciudad)) {
-//                    propiedadesBuscadas.add(p);
-//                }
-//            }
-//
-//            if (precio > 0 && tipo != null && ciudad == null && sector == null) {
-//                if (p.getPrecio() == precio && tipo.equals("terreno") && p instanceof Terreno) {
-//                    propiedadesBuscadas.add(p);
-//                }
-//                if (p.getPrecio() == precio && tipo.equals("vivienda") && p instanceof Casa) {
-//                    propiedadesBuscadas.add(p);
-//                }
-//            }
-//
-//            if (precio > 0 && tipo == null && ciudad == null && sector == null) {
-//                if (p.getPrecio() == precio) {
-//                    propiedadesBuscadas.add(p);
-//                }
-//            }
-//
-//            if (precio == 0 && tipo == null && ciudad == null && sector == null) {
-//                propiedadesBuscadas.add(p);
-//            }
-//
-//            if (precio == 0 && tipo != null && ciudad != null && sector != null) {
-//                if (tipo.equals("terreno") && p instanceof Terreno && p.getCiudad().equals(ciudad) && p.getSector().equals(sector)) {
-//                    propiedadesBuscadas.add(p);
-//                }
-//                if (tipo.equals("vivienda") && p instanceof Casa && p.getCiudad().equals(ciudad) && p.getSector().equals(sector)) {
-//                    propiedadesBuscadas.add(p);
-//                }
-//            }
-//
-//            if (precio == 0 && tipo != null && ciudad != null && sector == null) {
-//                if (tipo.equals("terreno") && p instanceof Terreno && p.getCiudad().equals(ciudad)) {
-//                    propiedadesBuscadas.add(p);
-//                }
-//                if (tipo.equals("vivienda") && p instanceof Casa && p.getCiudad().equals(ciudad)) {
-//                    propiedadesBuscadas.add(p);
-//                }
-//            }
-//
-//            if (precio == 0 && tipo != null && ciudad == null && sector == null) {
-//                if (tipo.equals("terreno") && p instanceof Terreno) {
-//                    propiedadesBuscadas.add(p);
-//                }
-//                if (tipo.equals("vivienda") && p instanceof Casa) {
-//                    propiedadesBuscadas.add(p);
-//                }
-//            }
-//
-//            if (precio == 0 && tipo == null && ciudad != null && sector != null) {
-//                if (p.getCiudad().equals(ciudad) && p.getSector().equals(sector)) {
-//                    propiedadesBuscadas.add(p);
-//                }
-//            }
-//
-//            if (precio == 0 && tipo == null && ciudad != null && sector == null) {
-//                if (p.getCiudad().equals(ciudad)) {
-//                    propiedadesBuscadas.add(p);
-//                }
-//            }
-//
-//            if (precio == 0 && tipo == null && ciudad == null && sector != null) {
-//                if (p.getSector().equals(sector)) {
-//                    propiedadesBuscadas.add(p);
-//                }
-//            }
-//        }
-//        List<Propiedad> noVendidas = new ArrayList<>();
-//        for (Propiedad p : propiedadesBuscadas) {
-//            if (!p.isVendida()) {
-//                noVendidas.add(p);
-//            }
-//        }
-//        return noVendidas;
-//
-//    }
+    public static List<Propiedad> filtrarPropiedades(double precioMax, double precioMin, String tipo, String ciudad, String sector) {
+        List<Propiedad> buscadas = new ArrayList<>();
+        boolean buscaPrecio = (precioMax > 0) && (precioMin > 0);
+        boolean buscaTipo = tipo != null;
+        boolean buscaCiudad = ciudad != null;
+        boolean buscaSector = sector != null;
+        if (buscaPrecio && !buscaTipo && !buscaCiudad && !buscaSector) {
+            buscadas.addAll(buscarPrecio(precioMax, precioMin));
+        } else if (buscaPrecio && buscaTipo && !buscaCiudad && !buscaSector) {
+            buscadas.addAll(buscarPrecioTipo(precioMax, precioMin, tipo));
+        } else if (buscaPrecio && !buscaTipo && buscaCiudad && !buscaSector) {
+            buscadas.addAll(buscarPrecioCiudad(precioMax, precioMin, ciudad));
+        } else if (buscaPrecio && !buscaTipo && !buscaCiudad && buscaSector) {
+            buscadas.addAll(buscarPrecioSector(precioMax, precioMin, sector));
+        } else if (buscaPrecio && buscaTipo && buscaCiudad && !buscaSector) {
+            buscadas.addAll(buscarPrecioTipoCiudad(precioMax, precioMin, tipo, ciudad));
+        } else if (buscaPrecio && buscaTipo && !buscaCiudad && buscaSector) {
+            buscadas.addAll(buscarPrecioTipoSector(precioMax, precioMin, tipo, sector));
+        } else if (buscaPrecio && buscaTipo && buscaCiudad && buscaSector) {
+            buscadas.addAll(buscarPrecioTipoCiudadSector(precioMax, precioMin, tipo, ciudad, sector));
+        } else if (!buscaPrecio && buscaTipo && !buscaCiudad && !buscaSector) {
+            buscadas.addAll(buscarTipo(tipo));
+        } else if (!buscaPrecio && buscaTipo && buscaCiudad && !buscaSector) {
+            buscadas.addAll(buscarTipociudad(tipo, ciudad));
+        } else if (!buscaPrecio && buscaTipo && !buscaCiudad && buscaSector) {
+            buscadas.addAll(buscarTipoSector(tipo, sector));
+        } else if (!buscaPrecio && buscaTipo && buscaCiudad && buscaSector) {
+            buscadas.addAll(buscarTipoCiudadSector(tipo, ciudad, sector));
+        } else if (!buscaPrecio && !buscaTipo && buscaCiudad && !buscaSector) {
+            buscadas.addAll(buscarCiudad(ciudad));
+        } else if (!buscaPrecio && !buscaTipo && buscaCiudad && buscaSector) {
+            buscadas.addAll(buscarCiudadSector(ciudad, sector));
+        } else if (buscaPrecio && !buscaTipo && buscaCiudad && buscaSector) {
+            buscadas.addAll(buscarPrecioCiudadSector(precioMax, precioMin, ciudad, sector));
+        } else if (!buscaPrecio && !buscaTipo && !buscaCiudad && buscaSector) {
+            buscadas.addAll(buscarSector(sector));
+        }
+        return buscadas;
+
+    }
+
     public static List<Propiedad> buscarPrecio(double precioMax, double precioMin) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
@@ -241,7 +182,7 @@ public class PropiedadesVenta {
         return buscar;
     }
 
-    public static List<Propiedad> buscarciudad(String ciudad) {
+    public static List<Propiedad> buscarCiudad(String ciudad) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
             if (!p.isVendida() && p.getCiudad().equals(ciudad)) {
@@ -250,25 +191,28 @@ public class PropiedadesVenta {
         }
         return buscar;
     }
+
     public static List<Propiedad> buscarCiudadSector(String ciudad, String sector) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
-            if ( p.getSector().equals(sector)&& p.getCiudad().equals(ciudad)&& !p.isVendida()) {
+            if (p.getSector().equals(sector) && p.getCiudad().equals(ciudad) && !p.isVendida()) {
                 buscar.add(p);
             }
         }
         return buscar;
     }
-    public static List<Propiedad> buscarPrecioCiudadSector(double precioMax, double precioMin, String ciudad,String sector) {
+
+    public static List<Propiedad> buscarPrecioCiudadSector(double precioMax, double precioMin, String ciudad, String sector) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
-            if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && p.getCiudad().equals(ciudad)&&p.getSector().equals(sector)) {
+            if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && p.getCiudad().equals(ciudad) && p.getSector().equals(sector)) {
                 buscar.add(p);
             }
         }
         return buscar;
     }
-     public static List<Propiedad> buscarsector(String sector) {
+
+    public static List<Propiedad> buscarSector(String sector) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
             if (!p.isVendida() && p.getSector().equals(sector)) {
@@ -277,6 +221,7 @@ public class PropiedadesVenta {
         }
         return buscar;
     }
+
     public static void main(String[] args) {
         propiedades = new ArrayList<>();
         propiedades.add(new Terreno("1", 3000, 25.9, 30, "guayas", "guayaquil", "tulcan y azuay", "sur", "bonita casa", false, TipoTerreno.VIVIENDA));
@@ -284,7 +229,7 @@ public class PropiedadesVenta {
         propiedades.add(new Casa("3", 30, 0, 0, "el oro", "machala", "casa de dos pisos", "sur", "sfsgvsd", false, 0, 0));
         propiedades.add(new Casa("4", 30, 0, 0, "esmeraldas", "esmeraldas", "casa de dos pisos", "sur", "sfsgvsd", false, 0, 0));
         propiedades.add(new Casa("5", 20, 0, 0, "el oro", "machala", "casa de dos pisos", "sur", "sfsgvsd", true, 0, 0));
-        mostrarPropiedades(filtrarPropiedades(3000, null, "guayaquil", null));
+        mostrarPropiedades(filtrarPropiedades(0, 3000, null, "guayaquil", null));
         // precio, tipo, ciudad, sector
 
     }
