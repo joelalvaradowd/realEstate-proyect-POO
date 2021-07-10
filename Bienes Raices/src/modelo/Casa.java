@@ -9,12 +9,14 @@ package modelo;
  *
  * @author Eliot
  */
-public class Casa extends Propiedad{
+public class Casa extends Propiedad {
+
     private int numPisos;
     private int numHabitaciones;
-    public Casa(String codigo, double precio, double ancho, double profundidad, String provincia,String ciudad, String direccion, String sector, String descripcion, boolean vendida, int pisos, int habitaciones) {
+
+    public Casa(String codigo, double precio, double ancho, double profundidad, String provincia, String ciudad, String direccion, String sector, String descripcion, boolean vendida, int pisos, int habitaciones) {
         super(codigo, precio, ancho, profundidad, provincia, ciudad, direccion, sector, descripcion, vendida);
-        this.numHabitaciones=habitaciones;
-        this.numPisos=pisos;
+        this.numHabitaciones = habitaciones;
+        this.numPisos = pisos;
     }
-    }
+}

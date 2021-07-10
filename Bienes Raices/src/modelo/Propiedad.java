@@ -15,11 +15,12 @@ public class Propiedad {
     private double ancho;
     private double profundidad;
     private String provincia;
+    private String ciudad;
     private String direccion;
     private String sector;
     private String descripcion;
     private boolean vendida;
-    public Propiedad(String codigo, double precio, double ancho, double profundidad, String provincia,String direccion, String sector, String descripcion, boolean vendida ){
+    public Propiedad(String codigo, double precio, double ancho, double profundidad, String provincia,String ciudad,String direccion, String sector, String descripcion, boolean vendida ){
         this.codigo=codigo;
         this.ancho=ancho;
         this.precio=precio;
@@ -28,9 +29,9 @@ public class Propiedad {
         this.descripcion=descripcion;
         this.direccion=direccion;
         this.sector=sector;
-        this.vendida=vendida;          
+        this.vendida=vendida;
+        this.ciudad=ciudad;
     }
-
     public String getCodigo() {
         return codigo;
     }

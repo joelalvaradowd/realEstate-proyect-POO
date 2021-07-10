@@ -17,5 +17,21 @@ public class PropiedadesVenta {
     private String ciudad;
     private String sector;
     private ArrayList<Propiedad> propiedades;
+
+    public PropiedadesVenta(double precio, String ciudad, String sector) {
+        this.precio = precio;
+        this.ciudad = ciudad;
+        this.sector = sector;
+    }
+
+    public PropiedadesVenta(double precio, String ciudad) {
+        this.precio = precio;
+        this.ciudad = ciudad;
+    }
+
+    public PropiedadesVenta(String ciudad, String sector) {
+        this.ciudad = ciudad;
+        this.sector = sector;
+    }
     
 }

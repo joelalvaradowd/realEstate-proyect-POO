@@ -88,9 +88,37 @@ public class Administrador extends Usuario {
                         System.out.print("Ingrese una descripcion del terreno: ");
                         String descripcion = sc.nextLine();
                         codigo++;
-                        propiedades.add(new Terreno(String.valueOf(codigo), precio, ancho, profundidad, provincia, direccion, sector, descripcion, false, tipoT));
+                        propiedades.add(new Terreno(String.valueOf(codigo), precio, ancho, profundidad, provincia, ciudad,direccion, sector, descripcion, false, tipoT));
                         break;
                     }
+                    else if(propiedad.equals("casa")){
+                        System.out.print("Ingrese el precio de la casa:");
+                        double precio = sc.nextDouble();
+                        System.out.print("Ingrese el ancho de la casa en metros:");
+                        double ancho = sc.nextDouble();
+                        System.out.print("Ingrese la profundidad de la casa en metros: ");
+                        double profundidad = sc.nextDouble();
+                        System.out.print("Ingrese la ciudad donde se encuentra la casa:");
+                        sc.nextLine();
+                        String ciudad = sc.nextLine();
+                        System.out.print("Ingrese la direccion donde se encuentra la casa:");
+                        String direccion = sc.nextLine();
+                        System.out.print("Ingrese el sector donde se encuentra la casa: ");
+                        String sector = sc.nextLine();
+                        System.out.print("Ingrese la provincia donde se encuentre la casa:");
+                        String provincia = sc.nextLine();
+                        System.out.print("Ingrese el numero de pisos");
+                        int pisos=sc.nextInt();
+                        System.out.print("Ingrese el numero de habitaciones:");
+                        int habitaciones=sc.nextInt();
+                        sc.nextLine();
+                        System.out.print("Agregue una descripcion de la casa:");
+                        String descripcion=sc.nextLine();      
+                        Propiedad c = new Casa(String.valueOf(codigo),precio,ancho,profundidad,provincia,ciudad,direccion,sector,descripcion,false,pisos,habitaciones);
+                        codigo++;
+                        propiedades.add(c);
+                        break;
+                    }               
                 }
                 case 2: {
                     System.out.print("Ingrese el nombre del agente: ");
@@ -108,7 +136,7 @@ public class Administrador extends Usuario {
                     Sistema.agregarUsuario(u);
                     break;
                 }
-                case 5: {
+                case 3: {
                     System.out.println(propiedades);
                     break;
                 }
