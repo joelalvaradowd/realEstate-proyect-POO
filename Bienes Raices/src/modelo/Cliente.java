@@ -53,8 +53,20 @@ public class Cliente extends Usuario {
 
                     }
                 }
-                case 2:
-                    
+                case 2: {
+                    break;
+                }
+                case 3: {
+                    System.out.println("Creando Alarma...");
+                    double precio = 0;
+                    String tipo = null, ciudad = null, sector = null;
+                    System.out.print("Ingrese el precio:");
+                    String price = sc.nextLine();
+                    if (!price.isBlank()) {
+                        precio = Double.parseDouble(price);
+                    }
+                }
+
             }
         } while (elec != 5);
 
