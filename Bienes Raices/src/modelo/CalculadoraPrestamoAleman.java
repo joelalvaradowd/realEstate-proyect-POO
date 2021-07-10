@@ -10,8 +10,13 @@ package modelo;
  * @author User
  */
 public class CalculadoraPrestamoAleman extends CalculadoraPrestamo{
-
+    
+    public CalculadoraPrestamoAleman(double costo, double tasaInteres, int cuotas){
+        super(costo,tasaInteres,cuotas);
+        
+    }
     @Override
     public void calculadoraPrestamo(){
+        
     }
 }
