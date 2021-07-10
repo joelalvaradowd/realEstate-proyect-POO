@@ -25,6 +25,7 @@ public class Sistema {
     private static Scanner sc;
 
     public static void main(String[] args) {
+        System.out.println(Double.parseDouble(""));
         sc = new Scanner(System.in);
         int elec;
         inicializarAtributos();
