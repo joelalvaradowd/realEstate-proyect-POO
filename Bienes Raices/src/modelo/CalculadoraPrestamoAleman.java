@@ -16,7 +16,8 @@ public class CalculadoraPrestamoAleman extends CalculadoraPrestamo{
         
     }
     @Override
-    public void calculadoraPrestamo(){
+    public double calculadoraPrestamo(){
+        return 0;
         
     }
 }

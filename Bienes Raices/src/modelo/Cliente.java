@@ -50,7 +50,7 @@ public class Cliente extends Usuario {
                     System.out.println("Sector:");
                     String sector = sc.nextLine();
                     if (tipo == "casa") {
-
+                        
                     }
                 }
                 case 2:

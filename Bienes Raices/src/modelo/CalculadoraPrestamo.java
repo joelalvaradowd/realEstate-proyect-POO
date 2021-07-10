@@ -13,6 +13,24 @@ public abstract class CalculadoraPrestamo {
     private double costo;
     private double tasaInteres;
     private int cuotas;
+
+    public CalculadoraPrestamo(double costo, double tasaInteres, int cuotas) {
+        this.costo = costo;
+        this.tasaInteres = tasaInteres;
+        this.cuotas = cuotas;
+    }
+    public abstract double calculadoraPrestamo();
+
+    public double getCosto() {
+        return costo;
+    }
+
+    public double getTasaInteres() {
+        return tasaInteres;
+    }
+
+    public int getCuotas() {
+        return cuotas;
+    }
     
-    public abstract void calculadoraPrestamo();
 }
