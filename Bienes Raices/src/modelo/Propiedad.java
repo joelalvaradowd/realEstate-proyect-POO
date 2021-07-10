@@ -84,6 +84,14 @@ public class Propiedad {
         return sector;
     }
 
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
     public void setSector(String sector) {
         this.sector = sector;
     }
