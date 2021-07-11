@@ -35,6 +35,11 @@ public class Consulta implements Comparable<Consulta>{
         agente.agregarConsulta(this);
     }
     
+    @Override
+    public String toString(){
+        return "\nCliente: "+cliente.getNombre()+"\nPregunta: "+pregunta;
+    }
+    
     public void setRespuesta(String respuesta) {
         this.respuesta = respuesta;
     }

@@ -13,7 +13,7 @@ import java.util.Scanner;
  *
  * @author User
  */
-public class Agente extends Usuario {
+public class Agente extends Usuario implements Comparable<Agente>{
 
     private ArrayList<Venta> ventas;
     private ArrayList<Propiedad> propiedades;
@@ -21,29 +21,52 @@ public class Agente extends Usuario {
     private String codigo;
     private int numVentas;
 
-    public Agente(String codigo,String user, String password, String cedula, String nombre, String correo) {
+    public Agente(String codigo, String user, String password, String cedula, String nombre, String correo) {
         super(user, password, cedula, nombre, correo);
         this.codigo = codigo;
         propiedades = new ArrayList<>();
         consultas = new ArrayList<>();
-        
+        ventas = new ArrayList<>();
+
     }
-    
-    public int getNumVentas(){
+
+    public void mostrarVentas() {
+        if (!ventas.isEmpty()) {
+            System.out.println("Ventas");
+            for (Venta v : ventas) {
+                System.out.println(v);
+            }
+        } else {
+            System.out.println("Todavía no se han registrado ventas");
+        }
+    }
+
+    public void mostrarConsultas() {
+        if (!consultas.isEmpty()) {
+            System.out.println("Consultas");
+            for (Consulta c : consultas) {
+                System.out.println(c);
+            }
+        } else {
+            System.out.println("Todavía no se han registrado consultas");
+        }
+    }
+
+    public int getNumVentas() {
         return numVentas;
     }
-    
-    public int getNumRespuestas(){
+
+    public int getNumRespuestas() {
         int total = 0;
-        for(Consulta c: consultas){
-            if(c.getRespuesta()!=null){
+        for (Consulta c : consultas) {
+            if (c.getRespuesta() != null) {
                 total++;
             }
         }
         return total;
     }
-    
-    public String getCodigo(){
+
+    public String getCodigo() {
         return codigo;
     }
 
@@ -84,17 +107,17 @@ public class Agente extends Usuario {
     public void concretarVenta(String nombre, String cedula, String correo) {
         ventas.add(new Venta(nombre, cedula, correo, LocalDate.now()));
     }
-    
-    public void registrarVenta(){
-        for(Venta v: ventas){
-            if(!v.isRegistrada()){
+
+    public boolean registrarVenta() {
+        for (Venta v : ventas) {
+            if (!v.isRegistrada()) {
                 v.registrar();
                 numVentas++;
+                return true;
             }
         }
+        return false;
     }
-    
-    
 
     public void seguirPropiedad(Propiedad p) {
         propiedades.add(p);
@@ -105,8 +128,8 @@ public class Agente extends Usuario {
         Scanner sc = new Scanner(System.in);
         int elec;
         do {
-            System.out.println("Menu de agente");
-            System.out.println("1.Registrar buzon");
+            System.out.println("\nMenu de agente");
+            System.out.println("1.Revisar buzon");
             System.out.println("2. Registrar venta");
             System.out.println("3. Cerrar sesion");
             System.out.print("Elija una opcion:");
@@ -114,9 +137,18 @@ public class Agente extends Usuario {
             if (elec == 1) {
                 revisarBuzon();
             } else if (elec == 2) {
-                registrarVenta();
-                System.out.println("Todas las ventas fueron registradas");
+                if (registrarVenta()) {
+                    System.out.println("Todas las ventas fueron registradas");
+                }else{
+                    System.out.println("No hay ventas por registrar");
+                }
+
             }
         } while (elec != 3);
+    }
+
+    @Override
+    public int compareTo(Agente a) {
+        return Integer.valueOf(codigo) - Integer.valueOf(a.codigo);
     }
 }

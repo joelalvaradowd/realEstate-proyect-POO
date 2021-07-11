@@ -7,6 +7,7 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,7 @@ import vista.Sistema;
 public class Administrador extends Usuario {
 
     private ArrayList<Agente> agentes;
-    private static ArrayList<Propiedad> propiedades = new ArrayList<>();
+    private static ArrayList<Propiedad> propiedades=new ArrayList<>();
     private static int i = 0;
     private static int codigoAgente = 0;
     private static int codigo = 0;
@@ -30,15 +31,23 @@ public class Administrador extends Usuario {
         super(user, password, cedula, nombre, correo);
         agentes = new ArrayList<>();
         agregarPropiedades();
+        agregarAgentes();
 
     }
     
-    public void mostrarPropiedades(){
-        for(Propiedad p: propiedades){
-            System.out.println(p);
+    public void agregarAgentes(){
+        for(Usuario u: Sistema.getUsuarios()){
+            if(u instanceof Agente){
+                agentes.add((Agente)u);
+            }
         }
     }
 
+    public void mostrarPropiedades() {
+        for (Propiedad p : propiedades) {
+            System.out.println(p);
+        }
+    }
 
     public static ArrayList<Propiedad> obtenerPropiedades() {
         return propiedades;
@@ -48,13 +57,13 @@ public class Administrador extends Usuario {
         propiedades.add(new Terreno("34", 30000, 30, 10, "guayas", "guayaquil", "Guayas, Guayaquil, Norte, Cdla Kennedy", "norte", "Bonito terreno en calle comercial", false, TipoTerreno.VIVIENDA));
         propiedades.add(new Terreno("35", 40000, 40, 10, "guayas", "guayaquil", "La chala, por la sana sana", "norte", "Arriba de una farmacia", false, TipoTerreno.VIVIENDA));
         propiedades.add(new Casa("76", 70000, 18, 10, "guayas", "guayaquil", "Sur, cdla Domingo sabia 250", "sur", "Ciudadela tranquilo y segura", false, 2, 5));
-        propiedades.add(new Terreno("23", 80000, 22, 15, "imbabura", "ibarra", "Norte, La Victoria 240s", "norte", "Buen lugar para negocio, esquinero", false,TipoTerreno.COMERCIAL));
+        propiedades.add(new Terreno("23", 80000, 22, 15, "imbabura", "ibarra", "Norte, La Victoria 240s", "norte", "Buen lugar para negocio, esquinero", false, TipoTerreno.COMERCIAL));
         propiedades.add(new Casa("44", 60000, 15, 7, "guayas", "guayaquil", "SurOeste, 24ava y la ch", "surOeste", "Casa familiar muy amplia", false, 2, 3));
         propiedades.add(new Casa("88", 50000, 13, 8, "Santa Elena", "Salinas", "Sur, Las palmas 350s", "sur", "Casa bonita cerca de la playa", false, 2, 5));
         propiedades.add(new Terreno("62", 100000, 30, 21, "manabi", "manta", "centro, Los olivos 1350c", "centro", "Lugar empresarial cerca del centro", false, TipoTerreno.EMPRESARIAL));
         propiedades.add(new Terreno("86", 90000, 23, 16, "guayas", "guayaquil", "Norte, Victor Emilio estrada y las monjas", "Norte", "Zona muy comecial en urdesa", false, TipoTerreno.COMERCIAL));
         propiedades.add(new Casa("96", 75000, 20, 13, "pichincha", "quito", "Sur, Avenida Paramericana 360s", "sur", "casa muy amplia en sector seguro", false, 3, 6));
-        propiedades.add(new Terreno("106", 40000, 18, 10, "guayas", "guayaquil", "Norte, Lomas de la Alborada", "norte", "Lugar muy concurrido y seguro", false,TipoTerreno.VIVIENDA));
+        propiedades.add(new Terreno("106", 40000, 18, 10, "guayas", "guayaquil", "Norte, Lomas de la Alborada", "norte", "Lugar muy concurrido y seguro", false, TipoTerreno.VIVIENDA));
     }
 
     public void registrarPropiedad(Propiedad p) {
@@ -77,7 +86,7 @@ public class Administrador extends Usuario {
         Scanner sc = new Scanner(System.in);
         int elec;
         do {
-            System.out.println("Menu de administrador");
+            System.out.println("\nMenu de administrador");
             System.out.println("1.Registrar propiedad");
             System.out.println("2.Registrar agente");
             System.out.println("3.Reporte contactos y ventas");
@@ -166,8 +175,19 @@ public class Administrador extends Usuario {
                     break;
                 }
                 case 3: {
+                    if(!agentes.isEmpty()){
+                        Collections.sort(agentes);
                     tableWithLinesAndMaxWidth(agentes);
-                    
+                    System.out.print("Ingrese código del agente que quiere más detalles o vacío para regresar: ");
+                    String cod = sc.nextLine();
+                    Agente a = encontrarAgentes(cod);
+                    if (!cod.isEmpty() && a!= null) {
+                        mostrarDetalles(a);
+                    }
+                    if(a == null){
+                        System.out.println("Agente no encontrado");
+                    }
+                    }
                     break;
                 }
                 case 4: {
@@ -185,9 +205,23 @@ public class Administrador extends Usuario {
             }
         } while (elec != 4);
     }
-    
-      public static void tableWithLinesAndMaxWidth(List<Agente> agentes) {
-        String[][] table = new String[agentes.size() + 1][6];
+
+    public Agente encontrarAgentes(String cod){
+        for(Agente a: agentes){
+            if(a.getCodigo().equals(cod)){
+                return a;
+            }
+        }
+        return null;
+    }
+    public void mostrarDetalles(Agente a){
+        a.mostrarVentas();
+        a.mostrarConsultas();
+        
+    }
+
+    public static void tableWithLinesAndMaxWidth(List<Agente> agentes) {
+        String[][] table = new String[agentes.size() + 1][3];
         table[0][0] = "Agente";
         table[0][1] = "Numero Ventas";
         table[0][2] = "Numero de respuestas";

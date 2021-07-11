@@ -12,6 +12,7 @@ import java.time.LocalDate;
  * @author User
  */
 public class Venta {
+
     private String nombreCliente;
     private String cedula;
     private String correo;
@@ -25,16 +26,20 @@ public class Venta {
         this.fecha = fecha;
         registrada = false;
     }
-    
-    public boolean isRegistrada(){
-        return registrada; 
+
+    public boolean isRegistrada() {
+        return registrada;
     }
-    
-    public void registrar(){
-        if(!isRegistrada()){
+
+    public void registrar() {
+        if (!isRegistrada()) {
             registrada = true;
         }
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "\nCliente: " + nombreCliente + "\nCedula: " + cedula + "\nCorreo: " + correo + "\nFecha: " + String.valueOf(fecha);
+    }
+
 }

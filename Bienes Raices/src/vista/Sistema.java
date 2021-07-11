@@ -8,6 +8,7 @@ package vista;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import modelo.Administrador;
@@ -24,12 +25,17 @@ public class Sistema {
     private static ArrayList<Usuario> usuarios;
     private static Scanner sc;
 
+    public static List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
     public static void main(String[] args) {
         sc = new Scanner(System.in);
         int elec;
         inicializarAtributos();
+        System.out.println("Bienvenido al sistema de Bienes y Raíces");
         do {
-            System.out.println("1. Inicio de sesion");
+            System.out.println("\n1. Inicio de sesion");
             System.out.println("2. Registrarse");
             System.out.println("3. Salir");
             System.out.print("Elija una opcion:");
@@ -76,20 +82,17 @@ public class Sistema {
                     System.out.println("Registro exitoso!");
                     break;
                 }
-                default:
-                    System.out.println("Opcion inválida");
-                    break;
             }
         } while (elec != 3);
     }
 
     public static void inicializarAtributos() {
-        Usuario a = new Administrador("joealalv", "bebePoxi", "0957831282", "Joel", "joelalvarado2000g@hotmail.com");
         usuarios = new ArrayList<>();
-        usuarios.add(a);
         usuarios.add(new Agente("34", "eliotsant", "bebeHermoso", "0952869451", "Eliott", "eliotsant@outlook.com"));
         usuarios.add(new Cliente("rmera", "bebeGuapa", "0912345678", "Rocio", "rmera@espol.edu.ec"));
         usuarios.add(new Cliente("steph", "bebeUzum", "0912345678", "Stephanie", "stepquim@espol.edu.ec"));
+        Usuario a = new Administrador("joealalv", "bebePoxi", "0957831282", "Joel", "joelalvarado2000g@hotmail.com");
+        usuarios.add(a);
     }
 
     public static void agregarUsuario(Usuario u) {
