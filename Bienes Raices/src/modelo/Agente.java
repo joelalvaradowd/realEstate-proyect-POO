@@ -13,7 +13,7 @@ import java.util.Scanner;
  *
  * @author User
  */
-public class Agente extends Usuario implements Comparable<Agente>{
+public class Agente extends Usuario implements Comparable<Agente> {
 
     private ArrayList<Venta> ventas;
     private ArrayList<Propiedad> propiedades;
@@ -129,22 +129,31 @@ public class Agente extends Usuario implements Comparable<Agente>{
         int elec;
         do {
             System.out.println("\nMenu de agente");
-            System.out.println("1.Revisar buzon");
+            System.out.println("1. Revisar buzon");
             System.out.println("2. Registrar venta");
             System.out.println("3. Cerrar sesion");
             System.out.print("Elija una opcion:");
             elec = sc.nextInt();
-            if (elec == 1) {
-                revisarBuzon();
-            } else if (elec == 2) {
-                if (registrarVenta()) {
-                    System.out.println("Todas las ventas fueron registradas");
-                }else{
-                    System.out.println("No hay ventas por registrar");
+            switch (elec) {
+                case 1: {
+                    revisarBuzon();
+                    break;
                 }
-
+                case 2: {
+                    if (registrarVenta()) {
+                        System.out.println("Todas las ventas fueron registradas");
+                    } else {
+                        System.out.println("No hay ventas por registrar");
+                    }
+                    break;
+                }
+                case 3:{
+                    System.out.println("Volviendo al menú principal...");
+                    break;
+                }
             }
-        } while (elec != 3);
+        } while (elec
+                != 3);
     }
 
     @Override

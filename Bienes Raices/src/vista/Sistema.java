@@ -84,6 +84,7 @@ public class Sistema {
                 }
             }
         } while (elec != 3);
+        System.out.println("Gracias por visitar nuestro sistema!");
     }
 
     public static void inicializarAtributos() {

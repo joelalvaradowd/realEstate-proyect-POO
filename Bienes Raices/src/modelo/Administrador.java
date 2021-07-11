@@ -22,7 +22,7 @@ import vista.Sistema;
 public class Administrador extends Usuario {
 
     private ArrayList<Agente> agentes;
-    private static ArrayList<Propiedad> propiedades=new ArrayList<>();
+    private static ArrayList<Propiedad> propiedades = new ArrayList<>();
     private static int i = 0;
     private static int codigoAgente = 0;
     private static int codigo = 0;
@@ -34,11 +34,11 @@ public class Administrador extends Usuario {
         agregarAgentes();
 
     }
-    
-    public void agregarAgentes(){
-        for(Usuario u: Sistema.getUsuarios()){
-            if(u instanceof Agente){
-                agentes.add((Agente)u);
+
+    public void agregarAgentes() {
+        for (Usuario u : Sistema.getUsuarios()) {
+            if (u instanceof Agente) {
+                agentes.add((Agente) u);
             }
         }
     }
@@ -91,7 +91,6 @@ public class Administrador extends Usuario {
             System.out.println("2.Registrar agente");
             System.out.println("3.Reporte contactos y ventas");
             System.out.println("4.Cerrar sesion");
-            System.out.println("5. Ver propiedades y agentes");
             System.out.print("Elija una opcion: ");
             elec = sc.nextInt();
             sc.nextLine();
@@ -175,49 +174,42 @@ public class Administrador extends Usuario {
                     break;
                 }
                 case 3: {
-                    if(!agentes.isEmpty()){
+                    if (!agentes.isEmpty()) {
                         Collections.sort(agentes);
-                    tableWithLinesAndMaxWidth(agentes);
-                    System.out.print("Ingrese código del agente que quiere más detalles o vacío para regresar: ");
-                    String cod = sc.nextLine();
-                    Agente a = encontrarAgentes(cod);
-                    if (!cod.isEmpty() && a!= null) {
-                        mostrarDetalles(a);
-                    }
-                    if(a == null){
-                        System.out.println("Agente no encontrado");
-                    }
+                        tableWithLinesAndMaxWidth(agentes);
+                        System.out.print("Ingrese código del agente que quiere más detalles o vacío para regresar: ");
+                        String cod = sc.nextLine();
+                        Agente a = encontrarAgentes(cod);
+                        if (!cod.isEmpty() && a != null) {
+                            mostrarDetalles(a);
+                        }
+                        if (a == null) {
+                            System.out.println("Agente no encontrado");
+                        }
                     }
                     break;
                 }
                 case 4: {
-                    System.out.println("Volviendo al menú anterior...");
+                    System.out.println("Volviendo al menú principal...");
                     break;
                 }
-                case 5: {
-                    System.out.println(propiedades);
-                    System.out.println(agentes);
-                    break;
-                }
-                default:
-                    System.out.println("Opcion inválida");
-                    break;
             }
         } while (elec != 4);
     }
 
-    public Agente encontrarAgentes(String cod){
-        for(Agente a: agentes){
-            if(a.getCodigo().equals(cod)){
+    public Agente encontrarAgentes(String cod) {
+        for (Agente a : agentes) {
+            if (a.getCodigo().equals(cod)) {
                 return a;
             }
         }
         return null;
     }
-    public void mostrarDetalles(Agente a){
+
+    public void mostrarDetalles(Agente a) {
         a.mostrarVentas();
         a.mostrarConsultas();
-        
+
     }
 
     public static void tableWithLinesAndMaxWidth(List<Agente> agentes) {

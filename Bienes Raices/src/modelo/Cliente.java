@@ -139,13 +139,16 @@ public class Cliente extends Usuario {
                                 consultas.add(new Consulta(LocalDate.now(), p, agente, this, pregunta, Estado.ESPERANDO));
                                 agente.agregarPropiedad(p);
                             }
-                            System.out.print("¿Desea comprar propiedad?(si/no)");
-                            String comprar = sc.nextLine();
-                            if (comprar.equals("si")) {
-                                agente.concretarVenta(super.getNombre(), super.getCedula(), super.getCorreo());
+                            if (!p.isVendida()) {
+                                System.out.print("¿Desea comprar propiedad?(si/no)");
+                                String comprar = sc.nextLine();
+                                if (comprar.equals("si")) {
+                                    agente.concretarVenta(super.getNombre(), super.getCedula(), super.getCorreo());
+                                    p.setVendida(true);
+                                }
+                            } else {
+                                System.out.println("código no válido");
                             }
-                        } else {
-                            System.out.println("código no válido");
                         }
                     }
                     break;
@@ -159,9 +162,13 @@ public class Cliente extends Usuario {
                         System.out.print("Ingrese código de propiedad (o vacío para regresar):");
                         String cod = sc.nextLine();
                         Consulta c = encontrarConsulta(cod);
-                        Propiedad p = c.getPropiedad();
-                        Agente agente = c.getAgente();
-                        if (!cod.isBlank() && p != null) {
+                        Propiedad p = null;
+                        Agente agente = null;
+                        if (c != null) {
+                            p = c.getPropiedad();
+                            agente = c.getAgente();
+                        }
+                        if (!cod.isBlank() && c != null) {
                             System.out.println("Conversación:");
                             mostrarConversacion(cod);
                             System.out.print("Desea agregar una pregunta o regresar (si/no):");
@@ -171,10 +178,13 @@ public class Cliente extends Usuario {
                                 String pregunta = sc.nextLine();
                                 consultas.add(new Consulta(LocalDate.now(), p, consultas.get(0).getAgente(), this, pregunta, Estado.ESPERANDO));
                             }
-                            System.out.print("¿Desea comprar propiedad?(si/no)");
-                            String comprar = sc.nextLine();
-                            if (comprar.equals("si")) {
-                                agente.concretarVenta(super.getNombre(), super.getCedula(), super.getCorreo());
+                            if (!p.isVendida()) {
+                                System.out.print("¿Desea comprar propiedad?(si/no)");
+                                String comprar = sc.nextLine();
+                                if (comprar.equals("si")) {
+                                    agente.concretarVenta(super.getNombre(), super.getCedula(), super.getCorreo());
+                                    p.setVendida(true);
+                                }
                             }
 
                         } else {
@@ -217,6 +227,8 @@ public class Cliente extends Usuario {
                     }
                     break;
                 }
+                case 5:
+                    System.out.println("Volviendo al menú principal...");
             }
 
         } while (elec != 5);
@@ -228,7 +240,7 @@ public class Cliente extends Usuario {
         table[0][0] = "codigo";
         table[0][1] = "descripcion";
         table[0][2] = "precio";
-        table[0][3] = "tamaño";
+        table[0][3] = "tamaño (m^2)";
         table[0][4] = "ubicacion";
         table[0][5] = "consultada";
 

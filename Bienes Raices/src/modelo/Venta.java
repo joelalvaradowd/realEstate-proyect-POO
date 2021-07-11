@@ -39,7 +39,7 @@ public class Venta {
 
     @Override
     public String toString() {
-        return "\nCliente: " + nombreCliente + "\nCedula: " + cedula + "\nCorreo: " + correo + "\nFecha: " + String.valueOf(fecha);
+        return "\nCliente: " + nombreCliente + "\nCedula: " + cedula + "\nCorreo: " + correo + "\nFecha: " + String.valueOf(fecha)+"\n";
     }
 
 }
