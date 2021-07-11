@@ -15,7 +15,7 @@ import java.util.List;
 public class PropiedadesVenta {
     private static ArrayList<Propiedad> propiedades;
 
-    public static List<Propiedad> filtrarPropiedades(double precioMax, double precioMin, String tipo, String ciudad, String sector) {
+    public List<Propiedad> filtrarPropiedades(double precioMax, double precioMin, String tipo, String ciudad, String sector) {
         List<Propiedad> buscadas = new ArrayList<>();
         boolean buscaPrecio = (precioMax > 0) && (precioMin > 0);
         boolean buscaTipo = tipo != null;
@@ -229,12 +229,12 @@ public class PropiedadesVenta {
         propiedades.add(new Casa("3", 30, 0, 0, "el oro", "machala", "casa de dos pisos", "sur", "sfsgvsd", false, 0, 0));
         propiedades.add(new Casa("4", 30, 0, 0, "esmeraldas", "esmeraldas", "casa de dos pisos", "sur", "sfsgvsd", false, 0, 0));
         propiedades.add(new Casa("5", 20, 0, 0, "el oro", "machala", "casa de dos pisos", "sur", "sfsgvsd", true, 0, 0));
-        mostrarPropiedades(filtrarPropiedades(0, 3000, null, "guayaquil", null));
+        //mostrarPropiedades(filtrarPropiedades(0, 0, "terreno", "machala", null));
         // precio, tipo, ciudad, sector
 
     }
 
-    public static void mostrarPropiedades(List<Propiedad> propiedades) {
+    public void mostrarPropiedades(List<Propiedad> propiedades) {
         for (Propiedad p : propiedades) {
             System.out.println(p);
         }

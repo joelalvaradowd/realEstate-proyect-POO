@@ -41,17 +41,21 @@ public class Cliente extends Usuario {
             switch (elec) {
                 case 1: {
                     System.out.println("Consultar propiedades");
-                    System.out.println("Tipo");
+                    System.out.print("Tipo:");
                     String tipo = sc.nextLine();
-                    System.out.println("Rango de precio:");
-                    String rango = sc.nextLine();
-                    System.out.println("Ciudad:");
+                    sc.nextLine();
+                    System.out.print("Precio maximo:");
+                    double rangomas = sc.nextDouble();
+                    System.out.print("Precio minimo:");
+                    double rangomenos=sc.nextDouble();
+                    sc.nextLine();
+                    System.out.print("Ciudad:");
                     String ciudad = sc.nextLine();
                     System.out.println("Sector:");
                     String sector = sc.nextLine();
-                    if (tipo == "casa") {
-                        
-                    }
+                    PropiedadesVenta pv=new PropiedadesVenta();
+                    pv.filtrarPropiedades(rangomas, rangomenos, tipo, ciudad, sector);
+                    pv.mostrarPropiedades(pv.filtrarPropiedades(rangomas, rangomenos, tipo, ciudad, sector));
                 }
                 case 2: {
                     break;
@@ -66,7 +70,28 @@ public class Cliente extends Usuario {
                         precio = Double.parseDouble(price);
                     }
                 }
-
+                case 4:
+                    System.out.println("Calculadora de prestamos");
+                    System.out.print("Seleccione el sistema de amortizacion(Aleman/frances):");
+                    String tipo=sc.nextLine();
+                    sc.nextLine();
+                    System.out.print("Ingrese el costo del inmobiliario:");
+                    double ci=sc.nextDouble();
+                    System.out.print("Ingrese la tasa de interes:");
+                    double ti=sc.nextDouble();
+                    System.out.print("Ingrese el numero de cuotas mensuales:");
+                    int cm=sc.nextInt();
+                    if(tipo.equals("frances")){
+                        System.out.println("Sistema frances");
+                        CalculadoraPrestamo cf=new CalculadoraPrestamoFrances(ci,ti,cm);
+                        cf.calculadoraPrestamo(ci, ti, cm);
+                    }
+                    else if(tipo.equals("aleman")){
+                        System.out.println("Sistema Aleman");
+                        CalculadoraPrestamoAleman ca=new CalculadoraPrestamoAleman(ci,ti,cm);
+                        ca.calculadoraPrestamo(ci, ti, cm);
+                        System.out.println(ca.getTasaInteres());
+                    }   
             }
         } while (elec != 5);
 

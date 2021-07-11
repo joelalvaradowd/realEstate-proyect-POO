@@ -11,29 +11,29 @@ import java.util.ArrayList;
  *
  * @author User
  */
-public class CalculadoraPrestamoFrances extends CalculadoraPrestamo{
-    public CalculadoraPrestamoFrances(double costo,double tasaInteres,int cuotas){
-        super(costo,tasaInteres,cuotas);
+public class CalculadoraPrestamoFrances extends CalculadoraPrestamo {
+
+    private static ArrayList<Double> cuotaPagar;
+
+    public CalculadoraPrestamoFrances(double costo, double tasaInteres, int cuotas) {
+        super(costo, tasaInteres, cuotas);
     }
+
+    public static ArrayList<Double> getCuotaPagar() {
+        return cuotaPagar;
+    }
+
     @Override
-    public ArrayList calculadoraPrestamo() {
-        double c=super.getCosto();
-        double t=super.getTasaInteres();
-        int cuota=super.getCuotas();
-        int menosAnios=cuota;
-        double totalPagar=c;
-        ArrayList<Double> cuotasMensuales=new ArrayList<>();
-        
-        while(menosAnios>0){
-            double cuotaMonto=c*((t*0.01)/1-(1+Math.pow(t*0.01,(-cuota))));
-            double interesMonto=c*(t*0.01);
-            double reduccionCapital=cuotaMonto-interesMonto;
-            double capitalAdeudado=c-reduccionCapital;
-            cuotasMensuales.add(reduccionCapital);
-            c=capitalAdeudado;
-            totalPagar+=interesMonto;
+    public void calculadoraPrestamo(double costo, double tasaInteres, int cuotas) {
+        int menosAnios = cuotas;
+        while (menosAnios > 0) {
+            double cuotaMonto = costo * ((tasaInteres * 0.01) / 1 - (1 + Math.pow(tasaInteres * 0.01, (-cuotas))));
+            double interesMonto = costo * (tasaInteres * 0.01);
+            double reduccionCapital = cuotaMonto - interesMonto;
+            double capitalAdeudado = costo - reduccionCapital;
+            cuotaPagar.add(reduccionCapital);
+            costo = capitalAdeudado;
             menosAnios--;
         }
-        return cuotasMensuales;
     }
 }

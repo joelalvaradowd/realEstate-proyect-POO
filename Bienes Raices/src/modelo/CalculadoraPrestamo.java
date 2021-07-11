@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author User
@@ -19,7 +21,7 @@ public abstract class CalculadoraPrestamo {
         this.tasaInteres = tasaInteres;
         this.cuotas = cuotas;
     }
-    public abstract double calculadoraPrestamo();
+    public abstract void calculadoraPrestamo(double costo,double tasaInteres, int cuotas);
 
     public double getCosto() {
         return costo;
