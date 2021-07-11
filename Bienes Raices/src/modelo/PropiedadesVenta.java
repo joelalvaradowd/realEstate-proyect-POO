@@ -71,7 +71,7 @@ public class PropiedadesVenta {
     public static List<Propiedad> buscarPrecio(double precioMax, double precioMin) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
-            if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida()) {
+            if (p.getPrecio() >= precioMin && p.getPrecio() <= precioMax && !p.isVendida()) {
                 buscar.add(p);
             }
         }
@@ -81,9 +81,9 @@ public class PropiedadesVenta {
     public static List<Propiedad> buscarPrecioTipo(double precioMax, double precioMin, String tipo) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
-            if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && tipo.equals("terreno") && p instanceof Terreno) {
+            if (p.getPrecio() >= precioMin && p.getPrecio() <= precioMax && !p.isVendida() && tipo.equals("terreno") && p instanceof Terreno) {
                 buscar.add(p);
-            } else if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && tipo.equals("vivienda") && p instanceof Casa) {
+            } else if (p.getPrecio() >= precioMin && p.getPrecio() <= precioMax && !p.isVendida() && tipo.equals("vivienda") && p instanceof Casa) {
                 buscar.add(p);
             }
         }
@@ -93,7 +93,7 @@ public class PropiedadesVenta {
     public static List<Propiedad> buscarPrecioCiudad(double precioMax, double precioMin, String ciudad) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
-            if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && p.getCiudad().equals(ciudad)) {
+            if (p.getPrecio() >= precioMin && p.getPrecio() <= precioMax && !p.isVendida() && p.getCiudad().equals(ciudad)) {
                 buscar.add(p);
             }
         }
@@ -103,7 +103,7 @@ public class PropiedadesVenta {
     public static List<Propiedad> buscarPrecioSector(double precioMax, double precioMin, String sector) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
-            if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && p.getSector().equals(sector)) {
+            if (p.getPrecio() >= precioMin && p.getPrecio() <= precioMax && !p.isVendida() && p.getSector().equals(sector)) {
                 buscar.add(p);
             }
         }
@@ -113,9 +113,9 @@ public class PropiedadesVenta {
     public static List<Propiedad> buscarPrecioTipoCiudad(double precioMax, double precioMin, String tipo, String ciudad) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
-            if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && tipo.equals("terreno") && p instanceof Terreno && p.getCiudad().equals(ciudad)) {
+            if (p.getPrecio() >= precioMin && p.getPrecio() <= precioMax && !p.isVendida() && tipo.equals("terreno") && p instanceof Terreno && p.getCiudad().equals(ciudad)) {
                 buscar.add(p);
-            } else if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && tipo.equals("vivienda") && p instanceof Casa && p.getCiudad().equals(ciudad)) {
+            } else if (p.getPrecio() >= precioMin && p.getPrecio() <= precioMax && !p.isVendida() && tipo.equals("vivienda") && p instanceof Casa && p.getCiudad().equals(ciudad)) {
                 buscar.add(p);
             }
         }
@@ -125,9 +125,9 @@ public class PropiedadesVenta {
     public static List<Propiedad> buscarPrecioTipoSector(double precioMax, double precioMin, String tipo, String sector) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
-            if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && tipo.equals("terreno") && p instanceof Terreno && p.getSector().equals(sector)) {
+            if (p.getPrecio() >= precioMin && p.getPrecio() <= precioMax && !p.isVendida() && tipo.equals("terreno") && p instanceof Terreno && p.getSector().equals(sector)) {
                 buscar.add(p);
-            } else if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && tipo.equals("vivienda") && p instanceof Casa && p.getSector().equals(sector)) {
+            } else if (p.getPrecio() >= precioMin && p.getPrecio() <= precioMax && !p.isVendida() && tipo.equals("vivienda") && p instanceof Casa && p.getSector().equals(sector)) {
                 buscar.add(p);
             }
         }
@@ -137,9 +137,9 @@ public class PropiedadesVenta {
     public static List<Propiedad> buscarPrecioTipoCiudadSector(double precioMax, double precioMin, String tipo, String ciudad, String sector) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
-            if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && tipo.equals("terreno") && p instanceof Terreno && p.getCiudad().equals(ciudad) && p.getSector().equals(sector)) {
+            if (p.getPrecio() >= precioMin && p.getPrecio() <= precioMax && !p.isVendida() && tipo.equals("terreno") && p instanceof Terreno && p.getCiudad().equals(ciudad) && p.getSector().equals(sector)) {
                 buscar.add(p);
-            } else if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && tipo.equals("vivienda") && p instanceof Casa && p.getCiudad().equals(ciudad) && p.getSector().equals(sector)) {
+            } else if (p.getPrecio() >= precioMin && p.getPrecio() <= precioMax && !p.isVendida() && tipo.equals("vivienda") && p instanceof Casa && p.getCiudad().equals(ciudad) && p.getSector().equals(sector)) {
                 buscar.add(p);
             }
         }
@@ -217,7 +217,7 @@ public class PropiedadesVenta {
     public static List<Propiedad> buscarPrecioCiudadSector(double precioMax, double precioMin, String ciudad, String sector) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
-            if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && p.getCiudad().equals(ciudad) && p.getSector().equals(sector)) {
+            if (p.getPrecio() >= precioMin && p.getPrecio() <= precioMax && !p.isVendida() && p.getCiudad().equals(ciudad) && p.getSector().equals(sector)) {
                 buscar.add(p);
             }
         }
