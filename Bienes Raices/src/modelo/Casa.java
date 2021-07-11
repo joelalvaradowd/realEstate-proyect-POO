@@ -19,4 +19,13 @@ public class Casa extends Propiedad {
         this.numHabitaciones = habitaciones;
         this.numPisos = pisos;
     }
+    
+    @Override
+    public void mostrarDetalles(){
+        super.mostrarDetalles();
+        System.out.println("Numero de pisos: "+numPisos);
+        System.out.println("Numero ded habitaciones: "+numHabitaciones);
+        
+        
+    }
 }

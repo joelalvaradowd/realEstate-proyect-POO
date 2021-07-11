@@ -21,6 +21,7 @@ public class Consulta {
   private Estado estado;
   private ArrayList<Conversacion> conversaciones;
   
+  
           
   
 }

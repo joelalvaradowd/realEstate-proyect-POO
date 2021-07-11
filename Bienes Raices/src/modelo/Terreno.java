@@ -16,5 +16,11 @@ public class Terreno extends Propiedad{
         super(codigo, precio, ancho, profundidad, provincia,ciudad, direccion, sector, descripcion, vendida);
         this.tipo = tipo;
     }
+    
+    @Override
+    public void mostrarDetalles(){
+        super.mostrarDetalles();
+        System.out.println("Tipo: "+String.valueOf(tipo));
+    }
 
 }
