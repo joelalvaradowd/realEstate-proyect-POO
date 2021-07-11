@@ -71,10 +71,10 @@ public class Cliente extends Usuario {
                     }
                 }
                 case 4:
-                    System.out.println("Calculadora de prestamos");
-                    System.out.print("Seleccione el sistema de amortizacion(Aleman/frances):");
-                    String tipo=sc.nextLine();
                     sc.nextLine();
+                    System.out.println("Calculadora de prestamos");
+                    System.out.print("Seleccione el sistema de amortizacion(Aleman/frances): ");
+                    String tipo=sc.nextLine();
                     System.out.print("Ingrese el costo del inmobiliario:");
                     double ci=sc.nextDouble();
                     System.out.print("Ingrese la tasa de interes:");
@@ -89,7 +89,6 @@ public class Cliente extends Usuario {
                     else if(tipo.equals("aleman")){
                         System.out.println("Sistema Aleman");
                         CalculadoraPrestamoAleman ca=new CalculadoraPrestamoAleman(ci,ti,cm);
-                        ca.calculadoraPrestamo(ci, ti, cm);
                         ca.mostrarCuotas(ca.calculadoraPrestamo(ci, ti, cm));
                     }   
                     break;

@@ -30,6 +30,7 @@ public class CalculadoraPrestamoAleman extends CalculadoraPrestamo {
             double cuotasPagar = amortizacion + interes;
             cuotaPagar.add(cuotasPagar);
             costo -= amortizacion;
+            menosMeses--;
         }
         return cuotaPagar;
     }
