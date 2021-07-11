@@ -8,7 +8,6 @@ package vista;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 import modelo.Administrador;
@@ -33,7 +32,6 @@ public class Sistema {
             System.out.println("1. Inicio de sesion");
             System.out.println("2. Registrarse");
             System.out.println("3. Salir");
-            System.out.println("4. Ver usuarios");
             System.out.print("Elija una opcion:");
             elec = sc.nextInt();
             sc.nextLine();
@@ -78,11 +76,8 @@ public class Sistema {
                     System.out.println("Registro exitoso!");
                     break;
                 }
-                case 4:
-                    System.out.println(usuarios);
-                    System.out.println(usuarios.size());
-                    break;
                 default:
+                    System.out.println("Opcion inválida");
                     break;
             }
         } while (elec != 3);
@@ -92,7 +87,7 @@ public class Sistema {
         Usuario a = new Administrador("joealalv", "bebePoxi", "0957831282", "Joel", "joelalvarado2000g@hotmail.com");
         usuarios = new ArrayList<>();
         usuarios.add(a);
-        usuarios.add(new Agente("eliotsant", "bebeHermoso", "0952869451", "Eliott", "eliotsant@outlook.com"));
+        usuarios.add(new Agente("34", "eliotsant", "bebeHermoso", "0952869451", "Eliott", "eliotsant@outlook.com"));
         usuarios.add(new Cliente("rmera", "bebeGuapa", "0912345678", "Rocio", "rmera@espol.edu.ec"));
         usuarios.add(new Cliente("steph", "bebeUzum", "0912345678", "Stephanie", "stepquim@espol.edu.ec"));
         usuarios.add(new Agente("ElCojo", "soycojo123", "0952869451", "Cojo", "elcojo@cojoMail.com"));

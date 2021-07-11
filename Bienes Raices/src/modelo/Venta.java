@@ -13,8 +13,28 @@ import java.time.LocalDate;
  */
 public class Venta {
     private String nombreCliente;
+    private String cedula;
     private String correo;
     private LocalDate fecha;
+    private boolean registrada;
+
+    public Venta(String nombreCliente, String cedula, String correo, LocalDate fecha) {
+        this.nombreCliente = nombreCliente;
+        this.cedula = cedula;
+        this.correo = correo;
+        this.fecha = fecha;
+        registrada = false;
+    }
     
-    public void mostrarVenta(){}
+    public boolean isRegistrada(){
+        return registrada; 
+    }
+    
+    public void registrar(){
+        if(!isRegistrada()){
+            registrada = true;
+        }
+    }
+    
+    
 }

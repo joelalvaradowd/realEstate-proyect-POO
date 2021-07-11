@@ -19,19 +19,28 @@ public class Casa extends Propiedad {
         this.numHabitaciones = habitaciones;
         this.numPisos = pisos;
     }
-    
-    public Casa(Casa p){
+
+    public Casa(Casa p) {
         super(p.getCodigo(), p.getPrecio(), p.getAncho(), p.getProfundidad(), p.getProvincia(), p.getCiudad(), p.getDireccion(), p.getSector(), p.getDescripcion(), p.isVendida());
         this.numHabitaciones = p.numHabitaciones;
         this.numPisos = p.numPisos;
     }
-    
+
     @Override
-    public void mostrarDetalles(){
+    public boolean equals(Object o) {
+        if (o != null && o.getClass() == getClass()) {
+            Casa c = (Casa) o;
+            return super.equals(o) && numHabitaciones == c.numHabitaciones && numPisos == c.numPisos;
+
+        }
+        return false;
+    }
+
+    @Override
+    public void mostrarDetalles() {
         super.mostrarDetalles();
-        System.out.println("Numero de pisos: "+numPisos);
-        System.out.println("Numero ded habitaciones: "+numHabitaciones);
-        
-        
+        System.out.println("Numero de pisos: " + numPisos);
+        System.out.println("Numero ded habitaciones: " + numHabitaciones);
+
     }
 }
