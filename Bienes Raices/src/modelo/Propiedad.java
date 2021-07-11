@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -122,16 +123,13 @@ public class Propiedad {
         this.vendida = vendida;
     }
     
-    public void consultar(){
-        sc = new Scanner(System.in);
-        if(!consultada) consultada = true;
-        System.out.print("Ingrese su consulta: ");
-        String pregunta = sc.nextLine();
-        
+    public boolean isConsultada(){
+        return consultada;
     }
     
-    
-    
+    public void consultar(){
+        if(!isConsultada()) consultada = true;
+    }
     
 
     @Override

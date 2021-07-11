@@ -6,16 +6,19 @@
 package modelo;
 
 import java.util.ArrayList;
+
 import java.util.List;
+
 
 /**
  *
  * @author Eliot
  */
 public class PropiedadesVenta {
-    private static ArrayList<Propiedad> propiedades;
 
-    public List<Propiedad> filtrarPropiedades(double precioMax, double precioMin, String tipo, String ciudad, String sector) {
+    private static ArrayList<Propiedad> propiedades = Administrador.obtenerPropiedades();
+
+    public static List<Propiedad> filtrarPropiedades(double precioMax, double precioMin, String tipo, String ciudad, String sector) {
         List<Propiedad> buscadas = new ArrayList<>();
         boolean buscaPrecio = (precioMax > 0) && (precioMin > 0);
         boolean buscaTipo = tipo != null;
@@ -54,6 +57,15 @@ public class PropiedadesVenta {
         }
         return buscadas;
 
+    }
+
+    public static Propiedad buscarPropiedad(String codigo, List<Propiedad> filtradas) {
+        for (Propiedad p : filtradas) {
+            if (p.getCodigo().equals(codigo)) {
+                return p;
+            }
+        }
+        return null;
     }
 
     public static List<Propiedad> buscarPrecio(double precioMax, double precioMin) {
@@ -222,22 +234,12 @@ public class PropiedadesVenta {
         return buscar;
     }
 
-    public static void main(String[] args) {
-        propiedades = new ArrayList<>();
-        propiedades.add(new Terreno("1", 3000, 25.9, 30, "guayas", "guayaquil", "tulcan y azuay", "sur", "bonita casa", false, TipoTerreno.VIVIENDA));
-        propiedades.add(new Terreno("2", 30, 40, 50, "guayas", "machala", "tulcan y azuay", "norte", "bonita casa", false, TipoTerreno.VIVIENDA));
-        propiedades.add(new Casa("3", 30, 0, 0, "el oro", "machala", "casa de dos pisos", "sur", "sfsgvsd", false, 0, 0));
-        propiedades.add(new Casa("4", 30, 0, 0, "esmeraldas", "esmeraldas", "casa de dos pisos", "sur", "sfsgvsd", false, 0, 0));
-        propiedades.add(new Casa("5", 20, 0, 0, "el oro", "machala", "casa de dos pisos", "sur", "sfsgvsd", true, 0, 0));
-        //mostrarPropiedades(filtrarPropiedades(0, 0, "terreno", "machala", null));
-        // precio, tipo, ciudad, sector
-
-    }
-
     public void mostrarPropiedades(List<Propiedad> propiedades) {
         for (Propiedad p : propiedades) {
             System.out.println(p);
         }
     }
 
+    
+  
 }
