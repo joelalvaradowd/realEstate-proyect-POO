@@ -12,10 +12,10 @@ import java.util.ArrayList;
  *
  * @author Eliot
  */
-public class Consulta {
+public class Consulta implements Comparable<Consulta>{
 
     private LocalDate fechaInicio;    
-    private String codigoPropiedad;
+    private Propiedad propiedad;
     private Agente agente;
     private Cliente cliente;
     private String pregunta;
@@ -23,9 +23,9 @@ public class Consulta {
     private Estado estado;
     private LocalDate fechaRespuesta;
     
-    public Consulta(LocalDate fechaInicio, String codigoPropiedad, Agente agente, Cliente cliente, String pregunta, Estado estado) {
+    public Consulta(LocalDate fechaInicio, Propiedad propiedad, Agente agente, Cliente cliente, String pregunta, Estado estado) {
         this.fechaInicio = fechaInicio;
-        this.codigoPropiedad = codigoPropiedad;
+        this.propiedad = propiedad;
         this.agente = agente;
         this.cliente = cliente;
         this.pregunta = pregunta;
@@ -39,14 +39,14 @@ public class Consulta {
         this.respuesta = respuesta;
     }
     
+    public void setEstado(Estado estado){
+        this.estado = estado;
+    }
+    
     public void setFechaRespuesta(LocalDate fechaRespuesta) {
         this.fechaRespuesta = fechaRespuesta;
     }
     
-    @Override
-    public String toString() {
-        return "Consulta{" + "fechaInicio=" + fechaInicio + ", codigoPropiedad=" + codigoPropiedad + ", agente=" + agente + ", cliente=" + cliente + ", pregunta=" + pregunta + ", respuesta=" + respuesta + ", estado=" + estado + '}';
-    }
     
     public LocalDate getFechaInicio() {
         return fechaInicio;
@@ -56,8 +56,8 @@ public class Consulta {
         return fechaRespuesta;
     }
     
-    public String getCodigoPropiedad() {
-        return codigoPropiedad;
+    public Propiedad getPropiedad() {
+        return propiedad;
     }
     
     public Agente getAgente() {
@@ -78,6 +78,11 @@ public class Consulta {
     
     public Estado getEstado() {
         return estado;
+    }
+
+    @Override
+    public int compareTo(Consulta o) {
+        return Integer.valueOf(propiedad.getCodigo()) - Integer.valueOf(o.getPropiedad().getCodigo());
     }
     
 }

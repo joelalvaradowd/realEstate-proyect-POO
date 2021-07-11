@@ -14,7 +14,7 @@ import java.util.Scanner;
  *
  * @author Eliot
  */
-public class Propiedad {
+public class Propiedad implements Comparable<Propiedad>{
 
     private String codigo;
     private double precio;
@@ -56,7 +56,6 @@ public class Propiedad {
         this.vendida = p.vendida;
         this.ciudad = p.ciudad;
     }
-    
 
     public String getCodigo() {
         return codigo;
@@ -153,6 +152,14 @@ public class Propiedad {
         return "Propiedad{" + "codigo=" + codigo + ", precio=" + precio + ", ancho=" + ancho + ", profundidad=" + profundidad + ", provincia=" + provincia + ", direccion=" + direccion + ", sector=" + sector + ", descripcion=" + descripcion + ", vendida=" + vendida + '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o != null && o.getClass() == getClass()) {
+            Propiedad p = (Propiedad)o;
+            return codigo.equals(p.codigo) && precio==p.precio && ancho==p.ancho && profundidad==p.profundidad && provincia.equals(p.provincia) && ciudad.equals(p.ciudad) && direccion.equals(p.direccion) && sector.equals(p.sector) && descripcion.equals(p.descripcion) && vendida==p.vendida && consultada==p.consultada;   
+        }return false;
+    }
+
     public void mostrarDetalles() {
         System.out.println("Detalles de la propiedad");
         System.out.println("Codigo: " + codigo);
@@ -164,6 +171,11 @@ public class Propiedad {
         System.out.println("Sector: " + sector);
         System.out.println("Descripcion: " + descripcion);
 
+    }
+
+    @Override
+    public int compareTo(Propiedad o) {
+        return Integer.valueOf(codigo) - Integer.valueOf(o.codigo);
     }
 
 }

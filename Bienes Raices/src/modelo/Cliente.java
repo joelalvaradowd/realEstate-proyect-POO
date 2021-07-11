@@ -8,6 +8,8 @@ package modelo;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +38,16 @@ public class Cliente extends Usuario {
                 propiedades.add(new Casa((Casa) p));
             }
         }
+    }
 
+    public void actualizarPropiedades() {
+        for (Propiedad p : Administrador.obtenerPropiedades()) {
+            if (p instanceof Terreno && !propiedades.contains(p)) {
+                propiedades.add(new Terreno((Terreno) p));
+            } else if (p instanceof Casa && !propiedades.contains(p)) {
+                propiedades.add(new Casa((Casa) p));
+            }
+        }
     }
 
     public List<Propiedad> obtenerPropiedades() {
@@ -46,6 +57,7 @@ public class Cliente extends Usuario {
     @Override
     public void mostrarMenu() {
         Scanner sc = new Scanner(System.in);
+        actualizarPropiedades();
         int elec;
         do {
             System.out.println("Menu de cliente");
@@ -107,6 +119,7 @@ public class Cliente extends Usuario {
                     System.out.println("Rango Precio   " + String.valueOf(rangomenos) + "-" + String.valueOf(rangomas));
                     System.out.println("Ciudad         " + ciudad);
                     System.out.println("Sector         " + sector);
+                    Collections.sort(filtradas);
                     tableWithLinesAndMaxWidth(filtradas);
                     System.out.print("Ingrese el código de la propiedad que desea más detalle(o vacío para regresar): ");
                     String cod = sc.nextLine();
@@ -115,14 +128,20 @@ public class Cliente extends Usuario {
                         if (p != null) {
                             p.mostrarDetalles();
                             System.out.print("Desea realizar consulta (si/no):");
+                            Agente agente = Sistema.asignarAgente();
                             String respuesta = sc.nextLine();
                             if (respuesta.equals("si")) {
                                 p.consultar();
-                                Agente agente = Sistema.asignarAgente();
+
                                 System.out.print("Ingrese su consulta:");
                                 String pregunta = sc.nextLine();
-                                consultas.add(new Consulta(LocalDate.now(), cod, agente, this, pregunta, Estado.ESPERANDO));
+                                consultas.add(new Consulta(LocalDate.now(), p, agente, this, pregunta, Estado.ESPERANDO));
                                 agente.agregarPropiedad(p);
+                            }
+                            System.out.print("¿Desea comprar propiedad?(si/no)");
+                            String comprar = sc.nextLine();
+                            if (comprar.equals("si")) {
+                                agente.concretarVenta(super.getNombre(), super.getCedula(), super.getCorreo());
                             }
                         } else {
                             System.out.println("código no válido");
@@ -133,11 +152,13 @@ public class Cliente extends Usuario {
                 }
                 case 2: {
                     if (!consultas.isEmpty()) {
+                        Collections.sort(consultas);
                         tableWithLinesAndMaxWidth2(consultas);
                         sc.nextLine();
                         System.out.print("Ingrese código de propiedad (o vacío para regresar):");
                         String cod = sc.nextLine();
-                        if (!cod.isBlank() && existePropiedad(cod)) {
+                        Propiedad p = encontrarPropiedad(cod);
+                        if (!cod.isBlank() && p!=null) {      
                             System.out.println("Conversación:");
                             mostrarConversacion(cod);
                             System.out.print("Desea agregar una pregunta o regresar (si/no):");
@@ -145,7 +166,7 @@ public class Cliente extends Usuario {
                             if (resp.equals("si")) {
                                 System.out.print("Ingrese la pregunta:");
                                 String pregunta = sc.nextLine();
-                                consultas.add(new Consulta(LocalDate.now(), cod, consultas.get(0).getAgente(), this, pregunta, Estado.ESPERANDO));
+                                consultas.add(new Consulta(LocalDate.now(), p, consultas.get(0).getAgente(), this, pregunta, Estado.ESPERANDO));
                             }
                         }
 
@@ -337,7 +358,7 @@ public class Cliente extends Usuario {
                 state = "Respondido";
             }
             table[k][0] = String.valueOf(c.getFechaInicio());
-            table[k][1] = c.getCodigoPropiedad();
+            table[k][1] = c.getPropiedad().getCodigo();
             table[k][2] = c.getAgente().getNombre();
             table[k][3] = c.getPregunta();
             table[k][4] = state;
@@ -447,18 +468,18 @@ public class Cliente extends Usuario {
         System.out.print(line);
     }
 
-    public boolean existePropiedad(String cod) {
+    public Propiedad encontrarPropiedad(String cod) {
         for (Consulta c : consultas) {
-            if (c.getCodigoPropiedad().equals(cod)) {
-                return true;
+            if (c.getPropiedad().getCodigo().equals(cod)) {
+                return c.getPropiedad();
             }
         }
-        return false;
+        return null;
     }
 
     public void mostrarConversacion(String cod) {
         for (Consulta c : consultas) {
-            if (c.getCodigoPropiedad().equals(cod)) {
+            if (c.getPropiedad().getCodigo().equals(cod)) {
                 String fechaPregunta = String.valueOf(c.getFechaInicio());
                 String fechaRespuesta = String.valueOf(c.getFechaRespuesta());
                 String pregunta = c.getPregunta();

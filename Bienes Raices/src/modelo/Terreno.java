@@ -28,9 +28,19 @@ public class Terreno extends Propiedad {
         super.mostrarDetalles();
         System.out.println("Tipo: " + String.valueOf(tipo));
     }
-    
-    public TipoTerreno getTipo(){
+
+    public TipoTerreno getTipo() {
         return tipo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o != null && o.getClass() == getClass()) {
+            Terreno t = (Terreno) o;
+            return super.equals(o) && tipo == t.tipo;
+
+        }
+        return false;
     }
 
 }
