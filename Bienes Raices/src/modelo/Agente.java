@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,21 +17,37 @@ public class Agente extends Usuario {
 
     private ArrayList<Venta> ventas;
     private ArrayList<Propiedad> propiedades;
-    private Buzon buzon;
+    private ArrayList<Consulta> consultas;
+
 
     public Agente(String user, String password, String cedula, String nombre, String correo) {
         super(user, password, cedula, nombre, correo);
         propiedades = new ArrayList<>();
     }
     
+    public void agregarConsulta(Consulta c){
+        consultas.add(c);
+    }
+    
     public void agregarPropiedad(Propiedad p){
         propiedades.add(p);
     }
-
-    public void responderDuda() {
-    }
-
-    public void presentarConsultas() {
+    
+    public void revisarBuzon(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Buzon de "+super.getNombre());
+        for(Consulta c: consultas){
+            System.out.println(c.getCliente().getNombre()+": "+c.getPregunta());
+            System.out.print("¿Contestar? (si/no):");
+            String decision = sc.nextLine();
+            if(decision.equals("si")){
+                System.out.print("Respuesta:");
+                String respuesta = sc.nextLine();
+                c.setRespuesta(respuesta);
+                c.setFechaRespuesta(LocalDate.now());
+            } 
+        }
+        
     }
 
     public void seguirPropiedad(Propiedad p) {
@@ -49,6 +66,7 @@ public class Agente extends Usuario {
             System.out.print("Elija una opcion:");
             elec = sc.nextInt();
             if (elec == 1) {
+                revisarBuzon();
             } else if (elec == 2) {
             }
         } while (elec != 3);

@@ -46,9 +46,9 @@ public class Administrador extends Usuario {
         propiedades.add(new Casa("44", 60000, 15, 7, "guayas", "guayaquil", "SurOeste, 24ava y la ch", "surOeste", "Casa familiar muy amplia", false, 2, 3));
         propiedades.add(new Casa("88", 50000, 13, 8, "Santa Elena", "Salinas", "Sur, Las palmas 350s", "sur", "Casa bonita cerca de la playa", false, 2, 5));
         propiedades.add(new Terreno("62", 100000, 30, 21, "manabi", "manta", "centro, Los olivos 1350c", "centro", "Lugar empresarial cerca del centro", false, TipoTerreno.EMPRESARIAL));
-        propiedades.add(new Terreno("76", 90000, 23, 16, "guayas", "guayaquil", "Norte, Victor Emilio estrada y las monjas", "Norte", "Zona muy comecial en urdesa", false, TipoTerreno.COMERCIAL));
-        propiedades.add(new Casa("76", 75000, 20, 13, "pichincha", "quito", "Sur, Avenida Paramericana 360s", "sur", "casa muy amplia en sector seguro", false, 3, 6));
-        propiedades.add(new Terreno("76", 40000, 18, 10, "guayas", "guayaquil", "Norte, Lomas de la Alborada", "norte", "Lugar muy concurrido y seguro", false,TipoTerreno.VIVIENDA));
+        propiedades.add(new Terreno("86", 90000, 23, 16, "guayas", "guayaquil", "Norte, Victor Emilio estrada y las monjas", "Norte", "Zona muy comecial en urdesa", false, TipoTerreno.COMERCIAL));
+        propiedades.add(new Casa("96", 75000, 20, 13, "pichincha", "quito", "Sur, Avenida Paramericana 360s", "sur", "casa muy amplia en sector seguro", false, 3, 6));
+        propiedades.add(new Terreno("106", 40000, 18, 10, "guayas", "guayaquil", "Norte, Lomas de la Alborada", "norte", "Lugar muy concurrido y seguro", false,TipoTerreno.VIVIENDA));
     }
 
     public void registrarPropiedad(Propiedad p) {

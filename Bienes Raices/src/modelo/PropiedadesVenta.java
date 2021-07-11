@@ -9,19 +9,19 @@ import java.util.ArrayList;
 
 import java.util.List;
 
-
 /**
  *
  * @author Eliot
  */
 public class PropiedadesVenta {
+
     private Cliente c;
     private List<Propiedad> propiedades;
-    
-    public PropiedadesVenta(Cliente c){
+
+    public PropiedadesVenta(Cliente c) {
         this.c = c;
         propiedades = c.obtenerPropiedades();
-        
+
     }
 
     public List<Propiedad> filtrarPropiedades(double precioMax, double precioMin, String tipo, String ciudad, String sector) {
@@ -60,12 +60,15 @@ public class PropiedadesVenta {
             buscadas.addAll(buscarPrecioCiudadSector(precioMax, precioMin, ciudad, sector));
         } else if (!buscaPrecio && !buscaTipo && !buscaCiudad && buscaSector) {
             buscadas.addAll(buscarSector(sector));
+        } else if (!buscaPrecio && !buscaTipo && !buscaCiudad && !buscaSector) {
+            buscadas.addAll(propiedades);
         }
+
         return buscadas;
 
     }
 
-    public static Propiedad buscarPropiedad(String codigo, List<Propiedad> filtradas) {
+    public Propiedad buscarPropiedad(String codigo, List<Propiedad> filtradas) {
         for (Propiedad p : filtradas) {
             if (p.getCodigo().equals(codigo)) {
                 return p;
@@ -139,7 +142,6 @@ public class PropiedadesVenta {
         }
         return buscar;
     }
-    
 
     public List<Propiedad> buscarPrecioTipoCiudadSector(double precioMax, double precioMin, String tipo, String ciudad, String sector) {
         List<Propiedad> buscar = new ArrayList<>();
@@ -153,7 +155,7 @@ public class PropiedadesVenta {
         return buscar;
     }
 
-    public  List<Propiedad> buscarTipo(String tipo) {
+    public List<Propiedad> buscarTipo(String tipo) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
             if (!p.isVendida() && tipo.equals("terreno") && p instanceof Terreno) {
@@ -247,6 +249,4 @@ public class PropiedadesVenta {
         }
     }
 
-    
-  
 }
