@@ -6,26 +6,20 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author User
  */
 public class CalculadoraPrestamoFrances extends CalculadoraPrestamo {
-
-    private static ArrayList<Double> cuotaPagar;
-
     public CalculadoraPrestamoFrances(double costo, double tasaInteres, int cuotas) {
         super(costo, tasaInteres, cuotas);
     }
-
-    public static ArrayList<Double> getCuotaPagar() {
-        return cuotaPagar;
-    }
-
     @Override
-    public void calculadoraPrestamo(double costo, double tasaInteres, int cuotas) {
+    public ArrayList calculadoraPrestamo(double costo, double tasaInteres, int cuotas) {
         int menosAnios = cuotas;
+        ArrayList<Double> cuotaPagar= new ArrayList<>();
         while (menosAnios > 0) {
             double cuotaMonto = costo * ((tasaInteres * 0.01) / 1 - (1 + Math.pow(tasaInteres * 0.01, (-cuotas))));
             double interesMonto = costo * (tasaInteres * 0.01);
@@ -34,6 +28,12 @@ public class CalculadoraPrestamoFrances extends CalculadoraPrestamo {
             cuotaPagar.add(reduccionCapital);
             costo = capitalAdeudado;
             menosAnios--;
+        }
+        return cuotaPagar;
+    }
+    public void mostrarCuotas(List<Double> cuotaPagar) {
+        for (double d : cuotaPagar) {
+            System.out.println(d);
         }
     }
 }

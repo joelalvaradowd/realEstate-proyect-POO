@@ -83,16 +83,18 @@ public class Cliente extends Usuario {
                     int cm=sc.nextInt();
                     if(tipo.equals("frances")){
                         System.out.println("Sistema frances");
-                        CalculadoraPrestamo cf=new CalculadoraPrestamoFrances(ci,ti,cm);
-                        cf.calculadoraPrestamo(ci, ti, cm);
+                        CalculadoraPrestamoFrances cf=new CalculadoraPrestamoFrances(ci,ti,cm);
+                        cf.mostrarCuotas(cf.calculadoraPrestamo(ci, ti, cm));
                     }
                     else if(tipo.equals("aleman")){
                         System.out.println("Sistema Aleman");
                         CalculadoraPrestamoAleman ca=new CalculadoraPrestamoAleman(ci,ti,cm);
                         ca.calculadoraPrestamo(ci, ti, cm);
-                        System.out.println(ca.getTasaInteres());
+                        ca.mostrarCuotas(ca.calculadoraPrestamo(ci, ti, cm));
                     }   
+                    break;
             }
+            
         } while (elec != 5);
 
     }

@@ -21,7 +21,7 @@ public abstract class CalculadoraPrestamo {
         this.tasaInteres = tasaInteres;
         this.cuotas = cuotas;
     }
-    public abstract void calculadoraPrestamo(double costo,double tasaInteres, int cuotas);
+    public abstract ArrayList calculadoraPrestamo(double costo,double tasaInteres, int cuotas);
 
     public double getCosto() {
         return costo;
