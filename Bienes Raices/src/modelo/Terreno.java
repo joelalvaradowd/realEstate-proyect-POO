@@ -9,18 +9,28 @@ package modelo;
  *
  * @author Eliot
  */
-public class Terreno extends Propiedad{
-  private TipoTerreno tipo;  
+public class Terreno extends Propiedad {
 
-    public Terreno(String codigo, double precio, double ancho, double profundidad, String provincia,String ciudad, String direccion, String sector, String descripcion, boolean vendida, TipoTerreno tipo) {
-        super(codigo, precio, ancho, profundidad, provincia,ciudad, direccion, sector, descripcion, vendida);
+    private TipoTerreno tipo;
+
+    public Terreno(String codigo, double precio, double ancho, double profundidad, String provincia, String ciudad, String direccion, String sector, String descripcion, boolean vendida, TipoTerreno tipo) {
+        super(codigo, precio, ancho, profundidad, provincia, ciudad, direccion, sector, descripcion, vendida);
         this.tipo = tipo;
     }
-    
+
+    public Terreno(Terreno p) {
+        super(p.getCodigo(), p.getPrecio(), p.getAncho(), p.getProfundidad(), p.getProvincia(), p.getCiudad(), p.getDireccion(), p.getSector(), p.getDescripcion(), p.isVendida());
+        this.tipo = p.getTipo();
+    }
+
     @Override
-    public void mostrarDetalles(){
+    public void mostrarDetalles() {
         super.mostrarDetalles();
-        System.out.println("Tipo: "+String.valueOf(tipo));
+        System.out.println("Tipo: " + String.valueOf(tipo));
+    }
+    
+    public TipoTerreno getTipo(){
+        return tipo;
     }
 
 }

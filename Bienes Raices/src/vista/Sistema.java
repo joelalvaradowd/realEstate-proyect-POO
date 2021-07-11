@@ -44,10 +44,9 @@ public class Sistema {
                     System.out.print("Ingrese su contraseña:");
                     String password = sc.nextLine();
                     Usuario u = existeUsuario(usuario, password);
-                    if(u!=null){
+                    if (u != null) {
                         u.mostrarMenu();
-                    }
-                    else{
+                    } else {
                         System.out.println("Usuario o contraseña incorrecta");
                     }
                     break;
@@ -90,33 +89,34 @@ public class Sistema {
     }
 
     public static void inicializarAtributos() {
+        Usuario a = new Administrador("joealalv", "bebePoxi", "0957831282", "Joel", "joelalvarado2000g@hotmail.com");
         usuarios = new ArrayList<>();
-        usuarios.add(new Administrador("joealalv", "bebePoxi", "0957831282", "Joel", "joelalvarado2000g@hotmail.com"));
+        usuarios.add(a);
         usuarios.add(new Agente("eliotsant", "bebeHermoso", "0952869451", "Eliott", "eliotsant@outlook.com"));
         usuarios.add(new Cliente("rmera", "bebeGuapa", "0912345678", "Rocio", "rmera@espol.edu.ec"));
+        usuarios.add(new Cliente("steph", "bebeUzum", "0912345678", "Stephanie", "stepquim@espol.edu.ec"));
     }
-    
-    public static void agregarUsuario(Usuario u){
+
+    public static void agregarUsuario(Usuario u) {
         usuarios.add(u);
     }
-    
-    public static Usuario existeUsuario(String user, String password){
-        for(Usuario u: usuarios){
-            if(u.getUser().equals(user) && u.getPassword().equals(password)){
+
+    public static Usuario existeUsuario(String user, String password) {
+        for (Usuario u : usuarios) {
+            if (u.getUser().equals(user) && u.getPassword().equals(password)) {
                 return u;
             }
         }
         return null;
     }
-    
-    public static Agente asignarAgente(){
+
+    public static Agente asignarAgente() {
         Random r = new Random();
         Usuario u;
-        do{
+        do {
             u = usuarios.get(r.nextInt(usuarios.size()));
-        }while(!(u instanceof Agente));
-        return (Agente)u;     
+        } while (!(u instanceof Agente));
+        return (Agente) u;
     }
-    
-    
+
 }
