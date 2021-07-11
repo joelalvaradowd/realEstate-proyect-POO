@@ -50,16 +50,51 @@ public class Cliente extends Usuario {
                     System.out.println("Consultar propiedades");
                     sc.nextLine();
                     System.out.print("Tipo:");
-                    String tipo = sc.nextLine();
+                    String tipo;
+                    String pt=sc.nextLine();
+                    if(pt.isEmpty()){
+                        tipo=null;
+                    }
+                    else{
+                        tipo=pt;
+                    }
                     System.out.print("Precio maximo:");
-                    double rangomas = sc.nextDouble();
+                    double rangomas;
+                    String prmas=sc.nextLine();
+                    if(prmas.isEmpty()){
+                        rangomas=0;
+                    }
+                    else{
+                        rangomas=Double.parseDouble(prmas);
+                    }
                     System.out.print("Precio minimo:");
-                    double rangomenos = sc.nextDouble();
+                    double rangomenos;
+                    String prmenos=sc.nextLine();
+                    if(prmenos.isEmpty()){
+                        rangomenos=0;
+                    }
+                    else{
+                        rangomenos=Double.parseDouble(prmenos);
+                    }
                     sc.nextLine();
                     System.out.print("Ciudad:");
-                    String ciudad = sc.nextLine();
+                    String ciudad;
+                    String pc=sc.nextLine();
+                    if(pc.isEmpty()){
+                        ciudad=null;
+                    }
+                    else{
+                        ciudad=pc;
+                    }
                     System.out.print("Sector:");
-                    String sector = sc.nextLine();
+                    String sector;
+                    String ps=sc.nextLine();
+                    if(ps.isEmpty()){
+                        sector=null;
+                    }
+                    else{
+                        sector=ps;
+                    }
                     List<Propiedad> filtradas = PropiedadesVenta.filtrarPropiedades(rangomas, rangomenos, tipo, ciudad, sector);
                     System.out.println("Tipo           "+tipo);
                     System.out.println("Rango Precio   "+String.valueOf(rangomenos)+"-"+String.valueOf(rangomas));
