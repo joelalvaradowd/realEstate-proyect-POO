@@ -145,7 +145,7 @@ public class Administrador extends Usuario {
                         String sector = sc.nextLine();
                         System.out.print("Ingrese la provincia donde se encuentre la casa:");
                         String provincia = sc.nextLine();
-                        System.out.print("Ingrese el numero de pisos");
+                        System.out.print("Ingrese el numero de pisos:");
                         int pisos = sc.nextInt();
                         System.out.print("Ingrese el numero de habitaciones:");
                         int habitaciones = sc.nextInt();

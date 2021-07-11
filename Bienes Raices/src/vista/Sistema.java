@@ -91,8 +91,11 @@ public class Sistema {
         usuarios.add(new Agente("34", "eliotsant", "bebeHermoso", "0952869451", "Eliott", "eliotsant@outlook.com"));
         usuarios.add(new Cliente("rmera", "bebeGuapa", "0912345678", "Rocio", "rmera@espol.edu.ec"));
         usuarios.add(new Cliente("steph", "bebeUzum", "0912345678", "Stephanie", "stepquim@espol.edu.ec"));
+        usuarios.add(new Agente("30", "ElCojo", "soycojo123", "0952869451", "Cojo", "elcojo@cojoMail.com"));
+        usuarios.add(new Cliente("Johansito", "lgbtq", "0912345678", "Johan", "lgbtq@gmail.com"));
         Usuario a = new Administrador("joealalv", "bebePoxi", "0957831282", "Joel", "joelalvarado2000g@hotmail.com");
         usuarios.add(a);
+
     }
 
     public static void agregarUsuario(Usuario u) {

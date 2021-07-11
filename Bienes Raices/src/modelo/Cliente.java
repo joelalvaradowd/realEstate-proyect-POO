@@ -96,6 +96,7 @@ public class Cliente extends Usuario {
                     } else {
                         rangomenos = Double.parseDouble(prmenos);
                     }
+
                     System.out.print("Ciudad:");
                     String ciudad;
                     String pc = sc.nextLine();
