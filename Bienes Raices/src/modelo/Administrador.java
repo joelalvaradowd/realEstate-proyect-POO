@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -167,7 +168,26 @@ public class Administrador extends Usuario {
                 }
                 case 3: {
                     tableWithLinesAndMaxWidth(agentes);
-                    
+                    System.out.println("Ingrese la fecha minima(dia-mes-año)");
+                    LocalDate fechaMinima;
+                    String fmin=sc.nextLine();
+                    if(fmin.isEmpty()){
+                        fechaMinima=null;
+                    }
+                    else{
+                        String[] num=fmin.split("-");
+                        fechaMinima = LocalDate.of(Integer.parseInt(num[2]), Integer.parseInt(num[1]), Integer.parseInt(num[0]));
+                    }
+                    System.out.println("Ingrese la fecha minima(dia-mes-año)");
+                    LocalDate fechaMaxima;
+                    String fmax=sc.nextLine();
+                    if(fmax.isEmpty()){
+                        fechaMaxima=null;
+                    }
+                    else{
+                        String[] num=fmax.split("-");
+                        fechaMaxima = LocalDate.of(Integer.parseInt(num[2]), Integer.parseInt(num[1]), Integer.parseInt(num[0]));
+                    }
                     break;
                 }
                 case 4: {
