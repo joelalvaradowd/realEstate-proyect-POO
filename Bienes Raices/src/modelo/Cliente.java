@@ -60,7 +60,7 @@ public class Cliente extends Usuario {
         actualizarPropiedades();
         int elec;
         do {
-            System.out.println("Menu de cliente");
+            System.out.println("\nMenu de cliente");
             System.out.println("1.Consultar propiedades");
             System.out.println("2.Buzon de consultas");
             System.out.println("3.Crear alerta");
@@ -139,13 +139,16 @@ public class Cliente extends Usuario {
                                 consultas.add(new Consulta(LocalDate.now(), p, agente, this, pregunta, Estado.ESPERANDO));
                                 agente.agregarPropiedad(p);
                             }
-                            System.out.print("¿Desea comprar propiedad?(si/no)");
-                            String comprar = sc.nextLine();
-                            if (comprar.equals("si")) {
-                                agente.concretarVenta(super.getNombre(), super.getCedula(), super.getCorreo());
+                            if (!p.isVendida()) {
+                                System.out.print("¿Desea comprar propiedad?(si/no)");
+                                String comprar = sc.nextLine();
+                                if (comprar.equals("si")) {
+                                    agente.concretarVenta(super.getNombre(), super.getCedula(), super.getCorreo());
+                                    p.setVendida(true);
+                                }
+                            } else {
+                                System.out.println("código no válido");
                             }
-                        } else {
-                            System.out.println("código no válido");
                         }
                     }
                     break;
@@ -158,8 +161,14 @@ public class Cliente extends Usuario {
                         sc.nextLine();
                         System.out.print("Ingrese código de propiedad (o vacío para regresar):");
                         String cod = sc.nextLine();
-                        Propiedad p = encontrarPropiedad(cod);
-                        if (!cod.isBlank() && p!=null) {      
+                        Consulta c = encontrarConsulta(cod);
+                        Propiedad p = null;
+                        Agente agente = null;
+                        if (c != null) {
+                            p = c.getPropiedad();
+                            agente = c.getAgente();
+                        }
+                        if (!cod.isBlank() && c != null) {
                             System.out.println("Conversación:");
                             mostrarConversacion(cod);
                             System.out.print("Desea agregar una pregunta o regresar (si/no):");
@@ -169,13 +178,22 @@ public class Cliente extends Usuario {
                                 String pregunta = sc.nextLine();
                                 consultas.add(new Consulta(LocalDate.now(), p, consultas.get(0).getAgente(), this, pregunta, Estado.ESPERANDO));
                             }
-                        }
+                            if (!p.isVendida()) {
+                                System.out.print("¿Desea comprar propiedad?(si/no)");
+                                String comprar = sc.nextLine();
+                                if (comprar.equals("si")) {
+                                    agente.concretarVenta(super.getNombre(), super.getCedula(), super.getCorreo());
+                                    p.setVendida(true);
+                                }
+                            }
 
-                    } else {
-                        System.out.println("No ha hecho ninguna consulta");
+                        } else {
+                            System.out.println("No ha hecho ninguna consulta");
+                        }
                     }
                     break;
                 }
+
                 case 3: {
                     System.out.println("Creando Alarma...");
                     double precio = 0;
@@ -185,8 +203,9 @@ public class Cliente extends Usuario {
                     if (!price.isBlank()) {
                         precio = Double.parseDouble(price);
                     }
+                    break;
                 }
-                case 4:
+                case 4: {
                     sc.nextLine();
                     System.out.println("Calculadora de prestamos");
                     System.out.print("Seleccione el sistema de amortizacion(Aleman/frances): ");
@@ -207,6 +226,9 @@ public class Cliente extends Usuario {
                         ca.mostrarCuotas(ca.calculadoraPrestamo(ci, ti, cm));
                     }
                     break;
+                }
+                case 5:
+                    System.out.println("Volviendo al menú principal...");
             }
 
         } while (elec != 5);
@@ -218,7 +240,7 @@ public class Cliente extends Usuario {
         table[0][0] = "codigo";
         table[0][1] = "descripcion";
         table[0][2] = "precio";
-        table[0][3] = "tamaño";
+        table[0][3] = "tamaño (m^2)";
         table[0][4] = "ubicacion";
         table[0][5] = "consultada";
 
@@ -469,10 +491,10 @@ public class Cliente extends Usuario {
         System.out.print(line);
     }
 
-    public Propiedad encontrarPropiedad(String cod) {
+    public Consulta encontrarConsulta(String cod) {
         for (Consulta c : consultas) {
             if (c.getPropiedad().getCodigo().equals(cod)) {
-                return c.getPropiedad();
+                return c;
             }
         }
         return null;

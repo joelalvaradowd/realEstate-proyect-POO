@@ -63,8 +63,14 @@ public class PropiedadesVenta {
         } else if (!buscaPrecio && !buscaTipo && !buscaCiudad && !buscaSector) {
             buscadas.addAll(propiedades);
         }
+        List<Propiedad> noVendidas = new ArrayList<>();
+        for(Propiedad p: buscadas){
+            if(!p.isVendida()){
+                noVendidas.add(p);
+            }
+        }
 
-        return buscadas;
+        return noVendidas;
 
     }
 

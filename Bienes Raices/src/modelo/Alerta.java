@@ -7,7 +7,7 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.mail.Session;
+//import javax.mail.Session;
 /**
  *
  * @author User

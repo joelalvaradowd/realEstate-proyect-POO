@@ -9,7 +9,7 @@ package modelo;
  *
  * @author User
  */
-public abstract class Usuario {
+public abstract class Usuario{
 
     private String user;
     private String password;
