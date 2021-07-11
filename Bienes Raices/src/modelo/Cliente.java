@@ -23,13 +23,24 @@ public class Cliente extends Usuario {
 
     private LocalDate nacimiento;
     private List<Consulta> consultas = new ArrayList<>();
+    private List<Propiedad> propiedades;
     private ArrayList<Alerta> alertas;
 
     public Cliente(String user, String password, String cedula, String nombre, String correo) {
         super(user, password, cedula, nombre, correo);
+        propiedades = new ArrayList<>();
+        for (Propiedad p : Administrador.obtenerPropiedades()) {
+            if (p instanceof Terreno) {
+                propiedades.add(new Terreno((Terreno)p));
+            }else{
+                propiedades.add(new Casa((Casa)p));
+            }
+        }
+
     }
 
-    public void mostrarCuotas(String tipo) {
+    public List<Propiedad> obtenerPropiedades() {
+        return propiedades;
     }
 
     @Override
@@ -60,11 +71,12 @@ public class Cliente extends Usuario {
                     String ciudad = sc.nextLine();
                     System.out.print("Sector:");
                     String sector = sc.nextLine();
-                    List<Propiedad> filtradas = PropiedadesVenta.filtrarPropiedades(rangomas, rangomenos, tipo, ciudad, sector);
-                    System.out.println("Tipo           "+tipo);
-                    System.out.println("Rango Precio   "+String.valueOf(rangomenos)+"-"+String.valueOf(rangomas));
-                    System.out.println("Ciudad         "+ciudad);
-                    System.out.println("Sector         "+sector);
+                    PropiedadesVenta pv = new PropiedadesVenta(this);
+                    List<Propiedad> filtradas = pv.filtrarPropiedades(rangomas, rangomenos, tipo, ciudad, sector);
+                    System.out.println("Tipo           " + tipo);
+                    System.out.println("Rango Precio   " + String.valueOf(rangomenos) + "-" + String.valueOf(rangomas));
+                    System.out.println("Ciudad         " + ciudad);
+                    System.out.println("Sector         " + sector);
                     tableWithLinesAndMaxWidth(filtradas);
                     System.out.print("Ingrese el código de la propiedad que desea más detalle(o vacío para regresar): ");
                     String cod = sc.nextLine();
@@ -83,6 +95,8 @@ public class Cliente extends Usuario {
                                 agente.agregarPropiedad(p);
                                 System.out.println(consultas);
                             }
+                        } else {
+                            System.out.println("código no válido");
                         }
                     }
 
@@ -167,7 +181,7 @@ public class Cliente extends Usuario {
 	 * Table to print in console in 2-dimensional array. Each sub-array is a row.
          */
 
-        /*
+ /*
 	 * Create new table array with wrapped rows
          */
         List<String[]> tableList = new ArrayList<>(Arrays.asList(table));
@@ -256,10 +270,4 @@ public class Cliente extends Usuario {
         System.out.print(line);
     }
 
-    public static void main(String[] args) {
-        List<Propiedad> filtradas = new ArrayList<>();
-        filtradas.add(new Terreno("34", 30000, 30, 10, "guayas", "guayaquil", "Guayas, Guayaquil, Norte, Cdla Kennedy", "norte", "Bonito terreno en calle comercial", false, TipoTerreno.VIVIENDA));
-        filtradas.add(new Casa("76", 70000, 18, 10, "guayas", "guayaquil", "Sur, cdla Domingo sabia 250", "sur", "Ciudadela tranquilo y segura", false, 2, 5));
-        tableWithLinesAndMaxWidth(filtradas);
-    }
 }

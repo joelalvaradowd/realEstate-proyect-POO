@@ -16,22 +16,33 @@ import vista.Sistema;
 public class Administrador extends Usuario {
 
     private ArrayList<Agente> agentes;
-    private static ArrayList<Propiedad> propiedades;
+    private static ArrayList<Propiedad> propiedades = new ArrayList<>();
     private static int i = 0;
     private static int codigo = 0;
 
     public Administrador(String user, String password, String cedula, String nombre, String correo) {
         super(user, password, cedula, nombre, correo);
         agentes = new ArrayList<>();
-        propiedades = new ArrayList<>();
-        propiedades.add(new Terreno("34", 30000, 30, 10, "guayas", "guayaquil", "Guayas, Guayaquil, Norte, Cdla Kennedy", "norte", "Bonito terreno en calle comercial", false, TipoTerreno.VIVIENDA));
-        propiedades.add(new Terreno("35", 40000, 40, 10, "guayas", "guayaquil", "La chala, por la sana sana", "norte", "Arriba de una farmacia", false, TipoTerreno.VIVIENDA));
-        propiedades.add(new Casa("76", 70000, 18, 10, "guayas", "guayaquil", "Sur, cdla Domingo sabia 250", "sur", "Ciudadela tranquilo y segura", false, 2, 5));
+        agregarPropiedades();
 
     }
+    
+    public void mostrarPropiedades(){
+        for(Propiedad p: propiedades){
+            System.out.println(p);
+        }
+    }
+
 
     public static ArrayList<Propiedad> obtenerPropiedades() {
         return propiedades;
+    }
+
+    public static void agregarPropiedades() {
+        
+        propiedades.add(new Terreno("34", 30000, 30, 10, "guayas", "guayaquil", "Guayas, Guayaquil, Norte, Cdla Kennedy", "norte", "Bonito terreno en calle comercial", false, TipoTerreno.VIVIENDA));
+        propiedades.add(new Terreno("35", 40000, 40, 10, "guayas", "guayaquil", "La chala, por la sana sana", "norte", "Arriba de una farmacia", false, TipoTerreno.VIVIENDA));
+        propiedades.add(new Casa("76", 70000, 18, 10, "guayas", "guayaquil", "Sur, cdla Domingo sabia 250", "sur", "Ciudadela tranquilo y segura", false, 2, 5));
     }
 
     public void registrarPropiedad(Propiedad p) {

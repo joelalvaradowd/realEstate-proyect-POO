@@ -20,6 +20,12 @@ public class Casa extends Propiedad {
         this.numPisos = pisos;
     }
     
+    public Casa(Casa p){
+        super(p.getCodigo(), p.getPrecio(), p.getAncho(), p.getProfundidad(), p.getProvincia(), p.getCiudad(), p.getDireccion(), p.getSector(), p.getDescripcion(), p.isVendida());
+        this.numHabitaciones = p.numHabitaciones;
+        this.numPisos = p.numPisos;
+    }
+    
     @Override
     public void mostrarDetalles(){
         super.mostrarDetalles();

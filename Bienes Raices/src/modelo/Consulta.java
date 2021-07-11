@@ -29,6 +29,13 @@ public class Consulta {
      this.pregunta = pregunta;
      this.estado = estado;
   }
+
+    @Override
+    public String toString() {
+        return "Consulta{" + "fechaInicio=" + fechaInicio + ", codigoPropiedad=" + codigoPropiedad + ", agente=" + agente + ", cliente=" + cliente + ", pregunta=" + pregunta + ", respuesta=" + respuesta + ", estado=" + estado + '}';
+    }
+  
+    
   
   
   

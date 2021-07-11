@@ -15,10 +15,16 @@ import java.util.List;
  * @author Eliot
  */
 public class PropiedadesVenta {
+    private Cliente c;
+    private List<Propiedad> propiedades;
+    
+    public PropiedadesVenta(Cliente c){
+        this.c = c;
+        propiedades = c.obtenerPropiedades();
+        
+    }
 
-    private static ArrayList<Propiedad> propiedades = Administrador.obtenerPropiedades();
-
-    public static List<Propiedad> filtrarPropiedades(double precioMax, double precioMin, String tipo, String ciudad, String sector) {
+    public List<Propiedad> filtrarPropiedades(double precioMax, double precioMin, String tipo, String ciudad, String sector) {
         List<Propiedad> buscadas = new ArrayList<>();
         boolean buscaPrecio = (precioMax > 0) && (precioMin > 0);
         boolean buscaTipo = tipo != null;
@@ -68,7 +74,7 @@ public class PropiedadesVenta {
         return null;
     }
 
-    public static List<Propiedad> buscarPrecio(double precioMax, double precioMin) {
+    public List<Propiedad> buscarPrecio(double precioMax, double precioMin) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
             if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida()) {
@@ -78,7 +84,7 @@ public class PropiedadesVenta {
         return buscar;
     }
 
-    public static List<Propiedad> buscarPrecioTipo(double precioMax, double precioMin, String tipo) {
+    public List<Propiedad> buscarPrecioTipo(double precioMax, double precioMin, String tipo) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
             if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && tipo.equals("terreno") && p instanceof Terreno) {
@@ -90,7 +96,7 @@ public class PropiedadesVenta {
         return buscar;
     }
 
-    public static List<Propiedad> buscarPrecioCiudad(double precioMax, double precioMin, String ciudad) {
+    public List<Propiedad> buscarPrecioCiudad(double precioMax, double precioMin, String ciudad) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
             if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && p.getCiudad().equals(ciudad)) {
@@ -100,7 +106,7 @@ public class PropiedadesVenta {
         return buscar;
     }
 
-    public static List<Propiedad> buscarPrecioSector(double precioMax, double precioMin, String sector) {
+    public List<Propiedad> buscarPrecioSector(double precioMax, double precioMin, String sector) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
             if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && p.getSector().equals(sector)) {
@@ -110,7 +116,7 @@ public class PropiedadesVenta {
         return buscar;
     }
 
-    public static List<Propiedad> buscarPrecioTipoCiudad(double precioMax, double precioMin, String tipo, String ciudad) {
+    public List<Propiedad> buscarPrecioTipoCiudad(double precioMax, double precioMin, String tipo, String ciudad) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
             if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && tipo.equals("terreno") && p instanceof Terreno && p.getCiudad().equals(ciudad)) {
@@ -122,7 +128,7 @@ public class PropiedadesVenta {
         return buscar;
     }
 
-    public static List<Propiedad> buscarPrecioTipoSector(double precioMax, double precioMin, String tipo, String sector) {
+    public List<Propiedad> buscarPrecioTipoSector(double precioMax, double precioMin, String tipo, String sector) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
             if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && tipo.equals("terreno") && p instanceof Terreno && p.getSector().equals(sector)) {
@@ -133,8 +139,9 @@ public class PropiedadesVenta {
         }
         return buscar;
     }
+    
 
-    public static List<Propiedad> buscarPrecioTipoCiudadSector(double precioMax, double precioMin, String tipo, String ciudad, String sector) {
+    public List<Propiedad> buscarPrecioTipoCiudadSector(double precioMax, double precioMin, String tipo, String ciudad, String sector) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
             if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && tipo.equals("terreno") && p instanceof Terreno && p.getCiudad().equals(ciudad) && p.getSector().equals(sector)) {
@@ -146,7 +153,7 @@ public class PropiedadesVenta {
         return buscar;
     }
 
-    public static List<Propiedad> buscarTipo(String tipo) {
+    public  List<Propiedad> buscarTipo(String tipo) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
             if (!p.isVendida() && tipo.equals("terreno") && p instanceof Terreno) {
@@ -158,7 +165,7 @@ public class PropiedadesVenta {
         return buscar;
     }
 
-    public static List<Propiedad> buscarTipociudad(String tipo, String ciudad) {
+    public List<Propiedad> buscarTipociudad(String tipo, String ciudad) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
             if (!p.isVendida() && tipo.equals("terreno") && p instanceof Terreno && p.getCiudad().equals(ciudad)) {
@@ -170,7 +177,7 @@ public class PropiedadesVenta {
         return buscar;
     }
 
-    public static List<Propiedad> buscarTipoSector(String tipo, String sector) {
+    public List<Propiedad> buscarTipoSector(String tipo, String sector) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
             if (!p.isVendida() && tipo.equals("terreno") && p instanceof Terreno && p.getSector().equals(sector)) {
@@ -182,7 +189,7 @@ public class PropiedadesVenta {
         return buscar;
     }
 
-    public static List<Propiedad> buscarTipoCiudadSector(String tipo, String ciudad, String sector) {
+    public List<Propiedad> buscarTipoCiudadSector(String tipo, String ciudad, String sector) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
             if (!p.isVendida() && tipo.equals("terreno") && p instanceof Terreno && p.getCiudad().equals(ciudad) && p.getSector().equals(sector)) {
@@ -194,7 +201,7 @@ public class PropiedadesVenta {
         return buscar;
     }
 
-    public static List<Propiedad> buscarCiudad(String ciudad) {
+    public List<Propiedad> buscarCiudad(String ciudad) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
             if (!p.isVendida() && p.getCiudad().equals(ciudad)) {
@@ -204,7 +211,7 @@ public class PropiedadesVenta {
         return buscar;
     }
 
-    public static List<Propiedad> buscarCiudadSector(String ciudad, String sector) {
+    public List<Propiedad> buscarCiudadSector(String ciudad, String sector) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
             if (p.getSector().equals(sector) && p.getCiudad().equals(ciudad) && !p.isVendida()) {
@@ -214,7 +221,7 @@ public class PropiedadesVenta {
         return buscar;
     }
 
-    public static List<Propiedad> buscarPrecioCiudadSector(double precioMax, double precioMin, String ciudad, String sector) {
+    public List<Propiedad> buscarPrecioCiudadSector(double precioMax, double precioMin, String ciudad, String sector) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
             if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && p.getCiudad().equals(ciudad) && p.getSector().equals(sector)) {
@@ -224,7 +231,7 @@ public class PropiedadesVenta {
         return buscar;
     }
 
-    public static List<Propiedad> buscarSector(String sector) {
+    public List<Propiedad> buscarSector(String sector) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
             if (!p.isVendida() && p.getSector().equals(sector)) {
