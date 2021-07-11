@@ -15,11 +15,24 @@ import java.util.ArrayList;
 public class Consulta {
   private LocalDate fechaInicio; 
   private String codigoPropiedad;
-  private String agente;
+  private Agente agente;
+  private Cliente cliente;
   private String pregunta;
   private String respuesta;
   private Estado estado;
-  private ArrayList<Conversacion> conversaciones;
+  
+    public Consulta(LocalDate fechaInicio, String codigoPropiedad, Agente agente, Cliente cliente, String pregunta, Estado estado){
+     this.fechaInicio = fechaInicio;
+     this.codigoPropiedad = codigoPropiedad;
+     this.agente = agente;
+     this.cliente = cliente;
+     this.pregunta = pregunta;
+     this.estado = estado;
+  }
+  
+  
+  
+  
   
   
           

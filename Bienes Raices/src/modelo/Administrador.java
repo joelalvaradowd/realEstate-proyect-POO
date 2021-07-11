@@ -16,7 +16,7 @@ import vista.Sistema;
 public class Administrador extends Usuario {
 
     private ArrayList<Agente> agentes;
-    private ArrayList<Propiedad> propiedades;
+    private static ArrayList<Propiedad> propiedades;
     private static int i = 0;
     private static int codigo = 0;
 
@@ -24,7 +24,14 @@ public class Administrador extends Usuario {
         super(user, password, cedula, nombre, correo);
         agentes = new ArrayList<>();
         propiedades = new ArrayList<>();
+        propiedades.add(new Terreno("34", 30000, 30, 10, "guayas", "guayaquil", "Guayas, Guayaquil, Norte, Cdla Kennedy", "norte", "Bonito terreno en calle comercial", false, TipoTerreno.VIVIENDA));
+        propiedades.add(new Terreno("35", 40000, 40, 10, "guayas", "guayaquil", "La chala, por la sana sana", "norte", "Arriba de una farmacia", false, TipoTerreno.VIVIENDA));
+        propiedades.add(new Casa("76", 70000, 18, 10, "guayas", "guayaquil", "Sur, cdla Domingo sabia 250", "sur", "Ciudadela tranquilo y segura", false, 2, 5));
 
+    }
+
+    public static ArrayList<Propiedad> obtenerPropiedades() {
+        return propiedades;
     }
 
     public void registrarPropiedad(Propiedad p) {
@@ -137,11 +144,11 @@ public class Administrador extends Usuario {
                 case 3: {
                     break;
                 }
-                case 4:{
+                case 4: {
                     System.out.println("Volviendo al menú anterior...");
                     break;
                 }
-                case 5:{
+                case 5: {
                     System.out.println(propiedades);
                     System.out.println(agentes);
                     break;

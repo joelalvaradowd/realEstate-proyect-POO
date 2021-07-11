@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 import java.util.Scanner;
 import modelo.Administrador;
 import modelo.Agente;
@@ -107,4 +108,15 @@ public class Sistema {
         }
         return null;
     }
+    
+    public static Agente asignarAgente(){
+        Random r = new Random();
+        Usuario u;
+        do{
+            u = usuarios.get(r.nextInt(usuarios.size()));
+        }while(!(u instanceof Agente));
+        return (Agente)u;     
+    }
+    
+    
 }

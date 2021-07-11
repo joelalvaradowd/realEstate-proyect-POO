@@ -12,7 +12,15 @@ import java.util.ArrayList;
  * @author Eliot
  */
 public class Conversacion {
-    private ArrayList<Comentario> conversaciones;
+    private ArrayList<Consulta> consultas;
     private String codigoPropiedad;
     
+    public Conversacion(String codigoPropiedad){
+        this.codigoPropiedad = codigoPropiedad;
+    }
+    
+    public void mostrarConversacion(){
+        
+    }
 }
+

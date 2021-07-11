@@ -21,6 +21,10 @@ public class Agente extends Usuario {
     public Agente(String user, String password, String cedula, String nombre, String correo) {
         super(user, password, cedula, nombre, correo);
     }
+    
+    public void agregarPropiedad(Propiedad p){
+        propiedades.add(p);
+    }
 
     public void responderDuda() {
     }
