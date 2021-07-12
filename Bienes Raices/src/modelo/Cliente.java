@@ -26,7 +26,6 @@ public class Cliente extends Usuario {
     private LocalDate nacimiento;
     private List<Consulta> consultas = new ArrayList<>();
     private List<Propiedad> propiedades;
-    private List<Alerta> alertas;
 
     public Cliente(String user, String password, String cedula, String nombre, String correo) {
         super(user, password, cedula, nombre, correo);
@@ -195,14 +194,49 @@ public class Cliente extends Usuario {
                 }
 
                 case 3: {
-                    System.out.println("Creando Alarma...");
-                    double precio = 0;
-                    String tipo = null, ciudad = null, sector = null;
-                    System.out.print("Ingrese el precio:");
-                    String price = sc.nextLine();
-                    if (!price.isBlank()) {
-                        precio = Double.parseDouble(price);
+                    System.out.println("Indique sus preferencias para crear la alerta");
+                    System.out.print("Tipo:");
+                    String tipo;
+                    String pt = sc.nextLine();
+                    if (pt.isEmpty()) {
+                        tipo = null;
+                    } else {
+                        tipo = pt;
                     }
+                    System.out.print("Precio maximo:");
+                    double rangomas;
+                    String prmas = sc.nextLine();
+                    if (prmas.isEmpty()) {
+                        rangomas = 0;
+                    } else {
+                        rangomas = Double.parseDouble(prmas);
+                    }
+                    System.out.print("Precio minimo:");
+                    double rangomenos;
+                    String prmenos = sc.nextLine();
+                    if (prmenos.isEmpty()) {
+                        rangomenos = 0;
+                    } else {
+                        rangomenos = Double.parseDouble(prmenos);
+                    }
+
+                    System.out.print("Ciudad:");
+                    String ciudad;
+                    String pc = sc.nextLine();
+                    if (pc.isEmpty()) {
+                        ciudad = null;
+                    } else {
+                        ciudad = pc;
+                    }
+                    System.out.print("Sector:");
+                    String sector;
+                    String ps = sc.nextLine();
+                    if (ps.isEmpty()) {
+                        sector = null;
+                    } else {
+                        sector = ps;
+                    }
+                    Administrador.agregarAlerta(new Alerta(tipo, rangomas, rangomenos, ciudad, sector, this.getCorreo()));
                     break;
                 }
                 case 4: {

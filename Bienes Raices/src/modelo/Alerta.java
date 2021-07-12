@@ -8,17 +8,30 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 //import javax.mail.Session;
+
 /**
  *
  * @author User
  */
 public class Alerta {
-    private String preferencia;
-    private String correo;
-     private static ArrayList<Propiedad> propiedades;
 
-    public List<Propiedad> filtrarPropiedades(double precioMax, double precioMin, String tipo, String ciudad, String sector) {
-        List<Propiedad> buscadas = new ArrayList<>();
+    private String tipo;
+    private double precioMax;
+    private double precioMin;
+    private String ciudad;
+    private String sector;
+    private String to;
+
+    public Alerta(String tipo, double precioMax, double precioMin, String ciudad, String sector, String to) {
+        this.tipo = tipo;
+        this.precioMax = precioMax;
+        this.precioMin = precioMin;
+        this.ciudad = ciudad;
+        this.sector = sector;
+        this.to = to;
+    }
+
+    public void enviarCorreo(Propiedad p) {
         boolean buscaPrecio = (precioMax > 0) && (precioMin > 0);
         boolean buscaTipo = tipo != null;
         boolean buscaCiudad = ciudad != null;
@@ -54,43 +67,27 @@ public class Alerta {
         } else if (!buscaPrecio && !buscaTipo && !buscaCiudad && buscaSector) {
             buscadas.addAll(buscarSector(sector));
         }
-        return buscadas;
-
     }
 
-    public static List<Propiedad> buscarPrecio(double precioMax, double precioMin) {
-        List<Propiedad> buscar = new ArrayList<>();
-        for (Propiedad p : propiedades) {
-            if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida()) {
-                buscar.add(p);
-            }
+    public boolean buscarPrecio(Propiedad p) {
+        return p.getPrecio() >= precioMin && p.getPrecio() <= precioMax;
+    }
+
+    public boolean buscarPrecioTipo(Propiedad p) {
+        if (p.getPrecio() >= precioMin && p.getPrecio() <= precioMax && tipo.equals("terreno") && p instanceof Terreno) {
+            return true;
+        } else if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && tipo.equals("vivienda") && p instanceof Casa) {
+            return true;
         }
-        return buscar;
+
+        return false;
     }
 
-    public static List<Propiedad> buscarPrecioTipo(double precioMax, double precioMin, String tipo) {
-        List<Propiedad> buscar = new ArrayList<>();
-        for (Propiedad p : propiedades) {
-            if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && tipo.equals("terreno") && p instanceof Terreno) {
-                buscar.add(p);
-            } else if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && tipo.equals("vivienda") && p instanceof Casa) {
-                buscar.add(p);
-            }
-        }
-        return buscar;
+    public boolean buscarPrecioCiudad(Propiedad p) {
+            return p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && p.getCiudad().equals(ciudad);
     }
 
-    public static List<Propiedad> buscarPrecioCiudad(double precioMax, double precioMin, String ciudad) {
-        List<Propiedad> buscar = new ArrayList<>();
-        for (Propiedad p : propiedades) {
-            if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && p.getCiudad().equals(ciudad)) {
-                buscar.add(p);
-            }
-        }
-        return buscar;
-    }
-
-    public static List<Propiedad> buscarPrecioSector(double precioMax, double precioMin, String sector) {
+    public boolean buscarPrecioSector(Propiedad p) {
         List<Propiedad> buscar = new ArrayList<>();
         for (Propiedad p : propiedades) {
             if (p.getPrecio() > precioMin && p.getPrecio() < precioMax && !p.isVendida() && p.getSector().equals(sector)) {
@@ -242,5 +239,4 @@ public class Alerta {
         }
     }
 
-    
 }

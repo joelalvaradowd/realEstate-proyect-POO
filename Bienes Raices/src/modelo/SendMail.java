@@ -12,7 +12,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class SendMail {
-    public static void enviarAlerta(String from, String to, String titulo, String mensaje) {
+    public static void enviarAlerta(String from, String password, String to, String titulo, String mensaje) {
         // Assuming you are sending email from through gmails smtp
         String host = "smtp.gmail.com";
 
@@ -30,7 +30,7 @@ public class SendMail {
 
             protected PasswordAuthentication getPasswordAuthentication() {
 
-                return new PasswordAuthentication("poobienesraices@gmail.com", "Eliott2000");
+                return new PasswordAuthentication(from, password);
 
             }
 
