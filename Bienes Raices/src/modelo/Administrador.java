@@ -24,6 +24,7 @@ public class Administrador extends Usuario {
 
     private ArrayList<Agente> agentes;
     private static ArrayList<Propiedad> propiedades = new ArrayList<>();
+    private static List<Alerta> alertas;
     private static int i = 0;
     private static int codigoAgente = 0;
     private static int codigo = 0;
@@ -34,6 +35,10 @@ public class Administrador extends Usuario {
         agregarPropiedades();
         agregarAgentes();
 
+    }
+    
+    public static void agregarAlerta(Alerta a){
+        alertas.add(a);
     }
 
     public void agregarAgentes() {
@@ -127,7 +132,12 @@ public class Administrador extends Usuario {
                         System.out.print("Ingrese una descripcion del terreno: ");
                         String descripcion = sc.nextLine();
                         codigo++;
-                        propiedades.add(new Terreno(String.valueOf(codigo), precio, ancho, profundidad, provincia, ciudad, direccion, sector, descripcion, false, tipoT));
+                        Propiedad p = new Terreno(String.valueOf(codigo), precio, ancho, profundidad, provincia, ciudad, direccion, sector, descripcion, false, tipoT);
+                        propiedades.add(p);
+                        revisarAlerta(p);
+                        
+                        
+                        
                         break;
                     } else if (propiedad.equals("casa")) {
                         System.out.print("Ingrese el precio de la casa:");
@@ -153,7 +163,9 @@ public class Administrador extends Usuario {
                         System.out.print("Agregue una descripcion de la casa:");
                         String descripcion = sc.nextLine();
                         codigo++;
-                        propiedades.add(new Casa(String.valueOf(codigo), precio, ancho, profundidad, provincia, ciudad, direccion, sector, descripcion, false, pisos, habitaciones));
+                        Propiedad p = new Casa(String.valueOf(codigo), precio, ancho, profundidad, provincia, ciudad, direccion, sector, descripcion, false, pisos, habitaciones);
+                        propiedades.add(p);
+                        revisarAlerta(p);
                         break;
                     }
                 }
@@ -231,6 +243,13 @@ public class Administrador extends Usuario {
         a.mostrarVentas();
         a.mostrarConsultas();
 
+    }
+    
+    public void revisarAlerta(Propiedad p){
+        for(Alerta a: alertas){
+            
+        }
+        
     }
 
     public static void tableWithLinesAndMaxWidth(List<Agente> agentes) {

@@ -89,10 +89,10 @@ public class Sistema {
 
     public static void inicializarAtributos() {
         usuarios = new ArrayList<>();
-        usuarios.add(new Agente("34", "eliottsant", "eliott2000", "0952869451", "Eliott", "eliotsant@outlook.com"));
-        usuarios.add(new Cliente("pepe", "pepe456", "0912345678", "Jose", "josepe@gmail.com"));
+        usuarios.add(new Cliente("eliottsant", "eliottsant", "0952869451", "Eliott", "eliotsant@outlook.com"));
+        usuarios.add(new Cliente("eliott", "eliott", "0912345678", "Eliott", "eliottsantistevangarcia@gmail.com"));
         usuarios.add(new Agente("45","paco", "paco234", "0952869451", "Francisco", "franco@gmail.com"));
-        Usuario a = new Administrador("juanjo", "juan2122", "0957831282", "Juan", "juanjo12@hotmail.com");
+        Usuario a = new Administrador("admin", "123", "0957831282", "proyecto", "poobienesraices@gmail.com");
         usuarios.add(a);
     }
 
