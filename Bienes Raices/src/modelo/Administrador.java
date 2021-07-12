@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -174,20 +175,40 @@ public class Administrador extends Usuario {
                     break;
                 }
                 case 3: {
-                    if (!agentes.isEmpty()) {
-                        Collections.sort(agentes);
-                        tableWithLinesAndMaxWidth(agentes);
-                        System.out.print("Ingrese código del agente que quiere más detalles o vacío para regresar: ");
-                        String cod = sc.nextLine();
-                        Agente a = encontrarAgentes(cod);
-                        if (!cod.isEmpty() && a != null) {
-                            mostrarDetalles(a);
-                        }
-                        if (a == null) {
-                            System.out.println("Agente no encontrado");
-                        }
+                    tableWithLinesAndMaxWidth(agentes);
+                    System.out.println("Ingrese la fecha minima(dia-mes-año)");
+                    LocalDate fechaMinima;
+                    String fmin = sc.nextLine();
+                    if (fmin.isEmpty()) {
+                        fechaMinima = null;
+                    } else {
+                        String[] num = fmin.split("-");
+                        fechaMinima = LocalDate.of(Integer.parseInt(num[2]), Integer.parseInt(num[1]), Integer.parseInt(num[0]));
                     }
-                    break;
+                    System.out.println("Ingrese la fecha minima(dia-mes-año)");
+                    LocalDate fechaMaxima;
+                    String fmax = sc.nextLine();
+                    if (fmax.isEmpty()) {
+                        fechaMaxima = null;
+                    } else {
+                        String[] num = fmax.split("-");
+                        fechaMaxima = LocalDate.of(Integer.parseInt(num[2]), Integer.parseInt(num[1]), Integer.parseInt(num[0]));
+                        if (!agentes.isEmpty()) {
+                            Collections.sort(agentes);
+                            tableWithLinesAndMaxWidth(agentes);
+                            System.out.print("Ingrese código del agente que quiere más detalles o vacío para regresar: ");
+                            String cod = sc.nextLine();
+                            Agente a = encontrarAgentes(cod);
+                            if (!cod.isEmpty() && a != null) {
+                                mostrarDetalles(a);
+                            }
+                            if (a == null) {
+                                System.out.println("Agente no encontrado");
+                            }
+
+                        }
+                        break;
+                    }
                 }
                 case 4: {
                     System.out.println("Volviendo al menú principal...");
