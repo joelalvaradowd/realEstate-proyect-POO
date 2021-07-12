@@ -71,7 +71,6 @@ public class PropiedadesVenta {
         }
 
         return noVendidas;
-
     }
 
     public Propiedad buscarPropiedad(String codigo, List<Propiedad> filtradas) {
