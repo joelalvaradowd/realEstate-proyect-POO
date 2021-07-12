@@ -135,9 +135,6 @@ public class Administrador extends Usuario {
                         Propiedad p = new Terreno(String.valueOf(codigo), precio, ancho, profundidad, provincia, ciudad, direccion, sector, descripcion, false, tipoT);
                         propiedades.add(p);
                         revisarAlerta(p);
-                        
-                        
-                        
                         break;
                     } else if (propiedad.equals("casa")) {
                         System.out.print("Ingrese el precio de la casa:");
