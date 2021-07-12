@@ -25,7 +25,7 @@ public class CalculadoraPrestamoFrances extends CalculadoraPrestamo {
         while (menosAnios > 0) {
             double cuotaMonto = costo * ((tasaInteres * 0.01) / 1 - (1 + Math.pow(tasaInteres * 0.01, (-cuotas))));
             double interesMonto = costo * (tasaInteres * 0.01);
-            double reduccionCapital = -cuotaMonto + interesMonto;
+            double reduccionCapital = -(-cuotaMonto + interesMonto);
             double capitalAdeudado = costo - reduccionCapital;
             cuotaPagar.add(reduccionCapital);
             costo = capitalAdeudado;
