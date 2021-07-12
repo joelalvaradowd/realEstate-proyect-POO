@@ -170,7 +170,10 @@ public class Propiedad implements Comparable<Propiedad>{
         System.out.println("Dirección: " + direccion);
         System.out.println("Sector: " + sector);
         System.out.println("Descripcion: " + descripcion);
-
+    }
+    
+    public String mostrarDetallesS(){
+        return "\nDetalles de la propiedad:\n"+"Codigo: "+codigo+"\n"+"Precio: "+precio+"\n"+"Ancho: "+ancho+"\n"+"Profundidad: "+"\n"+"Provincia: "+provincia+"\n"+"Direccion: "+direccion+"\n"+"Sector: "+sector+"\n"+"Descripcion: "+descripcion+"\n";
     }
 
     @Override

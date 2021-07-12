@@ -30,6 +30,10 @@ public class Alerta {
         this.sector = sector;
         this.to = to;
     }
+    
+    public String getTo(){
+        return to;
+    }
 
     public boolean enviarAlerta(Propiedad p) {
         boolean buscaPrecio = (precioMax > 0) && (precioMin > 0);
@@ -57,7 +61,7 @@ public class Alerta {
         } else if (!buscaPrecio && buscaTipo && !buscaCiudad && buscaSector) {
             return buscarTipoSector(p);
         } else if (!buscaPrecio && buscaTipo && buscaCiudad && buscaSector) {
-            buscadas.addAll(buscarTipoCiudadSector(tipo, ciudad, sector));
+            return buscarTipoCiudadSector(p);
         } else if (!buscaPrecio && !buscaTipo && buscaCiudad && !buscaSector) {
             return buscarCiudad(p);
         } else if (!buscaPrecio && !buscaTipo && buscaCiudad && buscaSector) {
@@ -66,7 +70,7 @@ public class Alerta {
             return buscarPrecioCiudadSector(p);
         } else if (!buscaPrecio && !buscaTipo && !buscaCiudad && buscaSector) {
             return buscarSector(p);
-        }
+        }return false;
     }
 
     public boolean buscarPrecio(Propiedad p) {
@@ -128,7 +132,7 @@ public class Alerta {
         return false;
     }
 
-    public boolean buscarTipociudad(Propiedad p) {
+    public boolean buscarTipoCiudad(Propiedad p) {
         if (tipo.equals("terreno") && p instanceof Terreno && p.getCiudad().equals(ciudad)) {
             return true;
         } else if (tipo.equals("vivienda") && p instanceof Casa && p.getCiudad().equals(ciudad)) {

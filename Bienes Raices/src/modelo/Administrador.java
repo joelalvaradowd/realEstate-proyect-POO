@@ -24,7 +24,7 @@ public class Administrador extends Usuario {
 
     private ArrayList<Agente> agentes;
     private static ArrayList<Propiedad> propiedades = new ArrayList<>();
-    private static List<Alerta> alertas;
+    private static List<Alerta> alertas = new ArrayList<>();
     private static int i = 0;
     private static int codigoAgente = 0;
     private static int codigo = 0;
@@ -244,9 +244,10 @@ public class Administrador extends Usuario {
     
     public void revisarAlerta(Propiedad p){
         for(Alerta a: alertas){
-            
+            if(a.enviarAlerta(p)){
+                SendMail.enviarAlerta(super.getCorreo(), super.getPassword(), a.getTo(), "Aplicacion Bienes Raíces - Alerta de notificación", p.mostrarDetallesS());
+            }
         }
-        
     }
 
     public static void tableWithLinesAndMaxWidth(List<Agente> agentes) {

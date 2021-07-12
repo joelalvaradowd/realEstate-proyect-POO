@@ -194,6 +194,7 @@ public class Cliente extends Usuario {
                 }
 
                 case 3: {
+                    sc.nextLine();
                     System.out.println("Indique sus preferencias para crear la alerta");
                     System.out.print("Tipo:");
                     String tipo;
@@ -237,6 +238,7 @@ public class Cliente extends Usuario {
                         sector = ps;
                     }
                     Administrador.agregarAlerta(new Alerta(tipo, rangomas, rangomenos, ciudad, sector, this.getCorreo()));
+                    System.out.println("Alerta creada!");
                     break;
                 }
                 case 4: {

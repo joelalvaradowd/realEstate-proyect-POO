@@ -1,6 +1,5 @@
 package modelo;
 
-
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -12,6 +11,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class SendMail {
+
     public static void enviarAlerta(String from, String password, String to, String titulo, String mensaje) {
         // Assuming you are sending email from through gmails smtp
         String host = "smtp.gmail.com";
