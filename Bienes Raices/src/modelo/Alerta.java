@@ -31,27 +31,27 @@ public class Alerta {
         this.to = to;
     }
 
-    public void enviarCorreo(Propiedad p) {
+    public boolean enviarAlerta(Propiedad p) {
         boolean buscaPrecio = (precioMax > 0) && (precioMin > 0);
         boolean buscaTipo = tipo != null;
         boolean buscaCiudad = ciudad != null;
         boolean buscaSector = sector != null;
         if (buscaPrecio && !buscaTipo && !buscaCiudad && !buscaSector) {
-            buscadas.addAll(buscarPrecio(precioMax, precioMin));
+            return buscarPrecio(p);
         } else if (buscaPrecio && buscaTipo && !buscaCiudad && !buscaSector) {
-            buscadas.addAll(buscarPrecioTipo(precioMax, precioMin, tipo));
+            return buscarPrecioTipo(p);
         } else if (buscaPrecio && !buscaTipo && buscaCiudad && !buscaSector) {
-            buscadas.addAll(buscarPrecioCiudad(precioMax, precioMin, ciudad));
+            return buscarPrecioCiudad(p);
         } else if (buscaPrecio && !buscaTipo && !buscaCiudad && buscaSector) {
-            buscadas.addAll(buscarPrecioSector(precioMax, precioMin, sector));
+            return buscarPrecioSector(p);
         } else if (buscaPrecio && buscaTipo && buscaCiudad && !buscaSector) {
-            buscadas.addAll(buscarPrecioTipoCiudad(precioMax, precioMin, tipo, ciudad));
+            return buscarPrecioTipoCiudad(p);
         } else if (buscaPrecio && buscaTipo && !buscaCiudad && buscaSector) {
-            buscadas.addAll(buscarPrecioTipoSector(precioMax, precioMin, tipo, sector));
+            return buscarPrecioTipoSector(p);
         } else if (buscaPrecio && buscaTipo && buscaCiudad && buscaSector) {
-            buscadas.addAll(buscarPrecioTipoCiudadSector(precioMax, precioMin, tipo, ciudad, sector));
+            return buscarPrecioTipoCiudadSector(p);
         } else if (!buscaPrecio && buscaTipo && !buscaCiudad && !buscaSector) {
-            buscadas.addAll(buscarTipo(tipo));
+            return buscarTipo(p);
         } else if (!buscaPrecio && buscaTipo && buscaCiudad && !buscaSector) {
             buscadas.addAll(buscarTipociudad(tipo, ciudad));
         } else if (!buscaPrecio && buscaTipo && !buscaCiudad && buscaSector) {
@@ -175,18 +175,6 @@ public class Alerta {
     public boolean buscarSector(Propiedad p) {
 
         return !p.isVendida() && p.getSector().equals(sector);
-
-    }
-
-    public static void main(String[] args) {
-        propiedades = new ArrayList<>();
-        propiedades.add(new Terreno("1", 3000, 25.9, 30, "guayas", "guayaquil", "tulcan y azuay", "sur", "bonita casa", false, TipoTerreno.VIVIENDA));
-        propiedades.add(new Terreno("2", 30, 40, 50, "guayas", "machala", "tulcan y azuay", "norte", "bonita casa", false, TipoTerreno.VIVIENDA));
-        propiedades.add(new Casa("3", 30, 0, 0, "el oro", "machala", "casa de dos pisos", "sur", "sfsgvsd", false, 0, 0));
-        propiedades.add(new Casa("4", 30, 0, 0, "esmeraldas", "esmeraldas", "casa de dos pisos", "sur", "sfsgvsd", false, 0, 0));
-        propiedades.add(new Casa("5", 20, 0, 0, "el oro", "machala", "casa de dos pisos", "sur", "sfsgvsd", true, 0, 0));
-        //mostrarPropiedades(filtrarPropiedades(0, 0, "terreno", "machala", null));
-        // precio, tipo, ciudad, sector
 
     }
 
