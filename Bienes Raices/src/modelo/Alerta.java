@@ -53,19 +53,19 @@ public class Alerta {
         } else if (!buscaPrecio && buscaTipo && !buscaCiudad && !buscaSector) {
             return buscarTipo(p);
         } else if (!buscaPrecio && buscaTipo && buscaCiudad && !buscaSector) {
-            buscadas.addAll(buscarTipociudad(tipo, ciudad));
+            return buscarTipoCiudad(p);
         } else if (!buscaPrecio && buscaTipo && !buscaCiudad && buscaSector) {
-            buscadas.addAll(buscarTipoSector(tipo, sector));
+            return buscarTipoSector(p);
         } else if (!buscaPrecio && buscaTipo && buscaCiudad && buscaSector) {
             buscadas.addAll(buscarTipoCiudadSector(tipo, ciudad, sector));
         } else if (!buscaPrecio && !buscaTipo && buscaCiudad && !buscaSector) {
-            buscadas.addAll(buscarCiudad(ciudad));
+            return buscarCiudad(p);
         } else if (!buscaPrecio && !buscaTipo && buscaCiudad && buscaSector) {
-            buscadas.addAll(buscarCiudadSector(ciudad, sector));
+            return buscarCiudadSector(p);
         } else if (buscaPrecio && !buscaTipo && buscaCiudad && buscaSector) {
-            buscadas.addAll(buscarPrecioCiudadSector(precioMax, precioMin, ciudad, sector));
+            return buscarPrecioCiudadSector(p);
         } else if (!buscaPrecio && !buscaTipo && !buscaCiudad && buscaSector) {
-            buscadas.addAll(buscarSector(sector));
+            return buscarSector(p);
         }
     }
 
